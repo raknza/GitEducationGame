@@ -172,7 +172,7 @@ public class GitSystem : MonoBehaviour , Panel
         }
         else
         {
-            Commit("Merge branch " + branch);
+            Commit("Merge branch " + branchName);
             nowCommit.transform.GetChild(2).gameObject.SetActive(true);
         }
         return true;
