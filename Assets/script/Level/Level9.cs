@@ -9,37 +9,6 @@ public class Level9 : Level
     {
         setUp();
 
-        /*gitSystem.addRemote("server");
-        gitSystem.serverRepository = new Repository();
-
-        Commit firstCommit = new Commit("init commit", "");
-        firstCommit.addModifiedFile(new KeyValuePair<string, string>("index", "init"));
-        gitSystem.serverRepository.Commit(firstCommit);
-
-        Commit secondCommit = new Commit("Add page1", "");
-        secondCommit.addModifiedFile(new KeyValuePair<string, string>("page1", "init"));
-        gitSystem.serverRepository.Commit(secondCommit);
-
-        Commit thirdCommit = new Commit("update page1", "");
-        thirdCommit.addModifiedFile(new KeyValuePair<string, string>("page1", "HelloWorld !\nsomeone changed"));
-        gitSystem.serverRepository.Commit(thirdCommit);
-
-        gitSystem.buildRepository();
-
-        fileSystem.NewFile("index", "");
-        gitSystem.trackFile("index", "init");
-        gitSystem.Commit("init commit");
-
-        fileSystem.NewFile("page1", "");
-        gitSystem.trackFile("page1", "init");
-        gitSystem.Commit("Add page1");
-
-        fileSystem.SetFileContent("page1", "Hello World !\nlocal test changed");
-        gitSystem.trackFile("page1", "Hello World !\nlocal test changed");
-
-        fileSystem.NewFile("page2", "");
-        gitSystem.trackFile("page2", "init");*/
-
         gitSystem.buildRepository();
 
         fileSystem.NewFile("index", "");

@@ -5994,10 +5994,10 @@ RectTransform:
   m_Father: {fileID: 1807236751}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5, y: -9.468938}
-  m_SizeDelta: {x: 0, y: 18.937876}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981645591
 MonoBehaviour:
@@ -6847,7 +6847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1097305878
 Transform:
   m_ObjectHideFlags: 0
@@ -6880,21 +6880,21 @@ MonoBehaviour:
   pageText: {fileID: 1060990337}
   count: 6
   dialouge:
-  - "\u6709\u6C92\u6709\u89BA\u3109\u524D\u9762\u3109\u65B9\u6CD5\u5F88\u721B\u5F88\u9EBB\u7169"
-  - "\u6216\u662F\u66FE\u7D93\u7528\u7E6A\u5716\u8EDF\u9AD4\u7E6A\u88FD\u540C\u4E00\u5F35\u5716\u7684\u591A\u500B\u7248\u672C\uFF1F"
-  - "\u67D0\u4E00\u5929\u9700\u8981\u67E5\u95B1\u904E\u53BB\u7684\u81EA\u5DF1\u7D00\u9304\u4E86\u54EA\u4E9B\u5167\u5BB9\uFF0C\u537B\u56E0\u70BA\u5167\u5BB9\u88AB\u8986\u84CB\u4E86\u800C\u627E\u4E0D\u5230\u3002"
-  - "\u9019\u6642\u5019\u4F60\u5C31\u9700\u8981\u5C07\u6A94\u6848\u5099\u4EFD\u8D77\u4F86\uFF0C\u4EE5\u4FBF\u4FEE\u6539\u5F8C\u4ECD\u53EF\u6062\u5FA9\u6216\u53C3\u8003\u4FEE\u6539\u524D\u7684\u5167\u5BB9\u3002"
-  - "\u5047\u8A2D\u4F60\u624B\u4E0A\u6709\u5169\u4EFD\u9700\u8981\u66F4\u6539\u7684\u6A94\u6848\uFF0C\u70BA\u4E86\u907F\u514D\u4FEE\u6539\u5F8C\u7684\u5167\u5BB9\u6709\u932F\u8AA4\u800C\u9700\u8981\u56DE\u5FA9\uFF0C\u9700\u8981\u9032\u884C\u5099\u4EFD\u3002 "
-  - "\u73FE\u5728\uFF0C\u8ACB\u4F60\u4F7F\u7528\u6307\u4EE4\"cp \u539F\u59CB\u6A94\u6848\u540D\u7A31
-    \u5099\u4EFD\u6A94\u6848\u540D\u7A31\"\u9032\u884C\u6A94\u6848\u5099\u4EFD\u3002"
+  - "\u5B8C\u6210\u4E86\u5206\u652F\u5408\u4F75\u8207\u540C\u5206\u652F\u4E0A\u7684\u5408\u4F75\u885D\u7A81\u5F8C\uFF0C\u63A5\u4E0B\u4F86\u5247\u8981\u9762\u5C0D\u5206\u652F\u5408\u4F75\u7684\u885D\u7A81\u72C0\u6CC1\u3002"
+  - "\u9664\u4E86\u540C\u5206\u652F\u4E0A\u7684\u885D\u7A81\uFF0C\u5728\u5404\u81EA\u5206\u652F\u4E0A\u958B\u767C\u6642\uFF0C\u5373\u4F7F\u958B\u767C\u4E0D\u540C\u90E8\u5206\uFF0C\u6574\u5408\u6642\u4E5F\u540C\u6A23\u53EF\u80FD\u9047\u5230\u6A94\u6848\u885D\u7A81\u3002"
+  - "\u9019\u6642\u4E5F\u5982\u540C\u524D\u4E00\u7BC0\u7576\u4E2D\uFF0C\u5FC5\u9808\u89E3\u6C7A\u9019\u4E9B\u6A94\u6848\u885D\u7A81\u4EE5\u5B8C\u6210\u5408\u4F75\u3002"
+  - "\u63A5\u4E0B\u4F86\uFF0C\u8ACB\u4F7F\u7528\"git merge\"\u6574\u5408\u4F3A\u670D\u5668\u4E0A\u7684\u5206\u652F\uFF0C\u4E26\u89E3\u6C7A\u767C\u751F\u7684\u885D
+    \u7A81\u3002"
+  - "\u6700\u5F8C\uFF0C\u8ACB\u5C07\u6574\u5408\u5B8C\u7684\u7248\u672C\u63A8\u9001\u81F3\u4F3A\u670D\u5668\u3002"
+  - "\u76F8\u95DC\u6307\u4EE4\u7684\u8A73\u7D30\u8AAA\u660E\u53EF\u4EE5\u53C3\u8003\u4E0B\u65B9\u5716\u5361\u3002"
   dialougeText: {fileID: 1774353977}
   sprites:
-  - {fileID: 21300000, guid: f935a3d7dd4d61e4289a80270178ba4e, type: 3}
-  - {fileID: 21300000, guid: 0c047d17f3a67774f9ad1ef16101ee1b, type: 3}
-  - {fileID: 21300000, guid: 99ff3e77770c0d14ebd33b1980f1be29, type: 3}
-  - {fileID: 21300000, guid: 00ba4ae47e3a1da4094e4b81a4ed5224, type: 3}
-  - {fileID: 21300000, guid: b86e95678920fa746bc4a97468ee6578, type: 3}
-  - {fileID: 21300000, guid: 21dff7992a55c5041ac5fea980fb8be9, type: 3}
+  - {fileID: 21300000, guid: 63a13029855069a49b2c09dde6ac37f9, type: 3}
+  - {fileID: 21300000, guid: 63a13029855069a49b2c09dde6ac37f9, type: 3}
+  - {fileID: 21300000, guid: 0058a2176ba6e174fbf0f8feb7000737, type: 3}
+  - {fileID: 21300000, guid: 0058a2176ba6e174fbf0f8feb7000737, type: 3}
+  - {fileID: 21300000, guid: dc6bd1c6e0006314d8c3e6eb996130d5, type: 3}
+  - {fileID: 21300000, guid: 60f9586d751af114f97b99b4c90762a8, type: 3}
   dialougeWaitSeconds: 0.03
   image: {fileID: 1405624000}
 --- !u!1 &1104619837
@@ -11274,7 +11274,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.35
   m_Text: 123
 --- !u!222 &1774353978
 CanvasRenderer:
@@ -11628,7 +11628,7 @@ RectTransform:
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
   m_AnchoredPosition: {x: -7.3093567, y: -730.5825}
-  m_SizeDelta: {x: 0, y: 18.937876}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1807236752
 MonoBehaviour:
@@ -12200,6 +12200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainFlag: {fileID: 1279977589}
+  headFlag: {fileID: 0}
   startCommit: {fileID: 633621784}
   remoteObjects: {fileID: 712624959}
   localObjects: {fileID: 224172223}
@@ -13317,7 +13318,8 @@ PrefabInstance:
     - target: {fileID: 3728851613044276991, guid: 3c67613704124f546949f9b68312d7f7,
         type: 3}
       propertyPath: m_Text
-      value: "\u5206\u652F"
+      value: "\u9664\u4E86\u540C\u5206\u652F\u4E0A\u7684\u885D\u7A81\uFF0C\u5728\u5404\u81EA\u5206\u652F\u4E0A\u958B\u767C\u6642\uFF0C\u6574\u5408\u6642\u4E5F\u540C\u6A23\u53EF\u80FD\u9047\u5230\u6A94\u6848\u885D\u7A81\u3002\r\n\u8ACB\u4F7F\u7528\"git
+        merge\"\u6574\u5408\u4F3A\u670D\u5668\u4E0A\u7684\u5206\u652F\uFF0C\u4E26\u89E3\n\u6C7A\u767C\u751F\u7684\u885D\u7A81\u6700\u5F8C\uFF0C\u8ACB\u5C07\u6574\u5408\u5B8C\u7684\u7248\u672C\u63A8\u9001\u81F3\u4F3A\u670D\u5668\u3002"
       objectReference: {fileID: 0}
     - target: {fileID: 3728851613044276991, guid: 3c67613704124f546949f9b68312d7f7,
         type: 3}
