@@ -12,6 +12,8 @@ public class Initialization : MonoBehaviour {
 
         if(!GameSystemManager.GetSystem<ScreenEffect>())
             GameSystemManager.AddSystem<ScreenEffect>(Instantiate(_prefab[0]));
+        if (!GameSystemManager.GetSystem<StudentEventManager>())
+            GameSystemManager.AddSystem<StudentEventManager>(Instantiate(_prefab[1]));
     }
 
 

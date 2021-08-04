@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class Level0 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    GameObject titleObjects;
+    [SerializeField]
+    GameObject chapterSelector;
 
     public void StartGame()
     {
         GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState( new LoadSceneState("MainSceneState", "Level1Scene") ,true);
+    }
+    
+    public void openChapterSelector()
+    {
+        titleObjects.SetActive(false);
+        chapterSelector.SetActive(true);
+    }
+
+    public void closeChapterSelector()
+    {
+        titleObjects.SetActive(true);
+        chapterSelector.SetActive(false);
     }
 }

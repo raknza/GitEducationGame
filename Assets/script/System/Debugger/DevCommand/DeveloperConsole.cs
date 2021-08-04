@@ -132,6 +132,7 @@ namespace Console
                         {
                             inputLogs.Add(inputText.text);
                         }
+                        GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("console.input", "{input:'" + inputText.text + "'}");
                         ParseInput(inputText.text);
                         consoleInput.text = "";
                         consoleInput.ActivateInputField();
