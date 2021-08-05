@@ -35,7 +35,7 @@ public class LoginSystem : MonoBehaviour
         if (GameSystemManager.GetSystem<StudentEventManager>().isLogin)
         {
             loginStatus.text = "登入狀態：登入成功";
-            loginButton.GetComponentInChildren<Text>().text = "登入成功";
+            loginButton.GetComponentInChildren<Text>().text = "登出帳號";
             startButton.interactable = true;
             chapterButton.interactable = true;
             loginButton.onClick.RemoveAllListeners();
