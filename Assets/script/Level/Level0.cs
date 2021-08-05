@@ -25,4 +25,9 @@ public class Level0 : MonoBehaviour
         titleObjects.SetActive(true);
         chapterSelector.SetActive(false);
     }
+
+    public void levelStart(string level)
+    {
+        GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", "Level" + level + "Scene"), true);
+    }
 }

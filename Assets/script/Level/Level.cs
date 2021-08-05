@@ -15,6 +15,12 @@ public class Level : MonoBehaviour
 
     [SerializeField]
     protected Button nextLevelButton;
+    [SerializeField]
+    protected GameObject passedLevelTips;
+
+    protected bool passedLevel = false;
+
+    protected float levelCost;
     protected enum levelScene
     {
         Level1,
@@ -38,16 +44,37 @@ public class Level : MonoBehaviour
         {
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", nextLevel + "Scene"), true);
         });
+        levelScene nowLevel = nextLevel;
+        nowLevel--;
+        if (GameSystemManager.GetSystem<StudentEventManager>())
+        {
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.start", "{level:'" + nowLevel + "'}");
+        }
+        levelCost = 0;
+        passedLevel = false;
     }
     protected void updateTarget()
     {
         if (!targetSystem.targetStatus.Contains(false))
         {
-            nextLevelButton.gameObject.SetActive(true);
+            passedLevelTips.SetActive(true);
+            passedLevel = true;
+            passedLevelTips.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = 
+                "您是第" + 1 + "位通過此關卡的人\n" + "使用了" + GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count
+                + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
         }
         else
         {
-            nextLevelButton.gameObject.SetActive(false);
+            passedLevelTips.SetActive(false);
+            passedLevel = false;
+        }
+    }
+
+    protected void levelCostCount()
+    {
+        if (!passedLevel)
+        {
+            levelCost += Time.deltaTime;
         }
     }
 }

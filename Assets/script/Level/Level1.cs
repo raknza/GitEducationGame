@@ -33,5 +33,6 @@ public class Level1 : Level
             targetSystem.UndoTarget(1);
         }
         updateTarget();
+        levelCostCount();
     }
 }

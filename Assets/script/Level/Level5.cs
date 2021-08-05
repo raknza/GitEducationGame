@@ -34,7 +34,7 @@ public class Level5 : Level
             targetSystem.targetStatus[2] = true;
             targetSystem.AccomplishTarget(2);
         }
-
         updateTarget();
+        levelCostCount();
     }
 }
