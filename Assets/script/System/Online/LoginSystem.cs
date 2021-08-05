@@ -31,6 +31,16 @@ public class LoginSystem : MonoBehaviour
     private void Start()
     {
         loginButton.onClick.AddListener(loginDialogueShow);
+
+        if (GameSystemManager.GetSystem<StudentEventManager>().isLogin)
+        {
+            loginStatus.text = "登入狀態：登入成功";
+            loginButton.GetComponentInChildren<Text>().text = "登入成功";
+            startButton.interactable = true;
+            chapterButton.interactable = true;
+            loginButton.onClick.RemoveAllListeners();
+            loginButton.onClick.AddListener(logout);
+        }
     }
 
     public void loginDialogueShow()

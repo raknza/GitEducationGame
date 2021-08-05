@@ -13,6 +13,8 @@ public class StudentEventManager : MonoBehaviour
     string jwtToken;
     string username;
 
+    public bool isLogin { get; private set; } = false;
+
 
     public void logStudentEvent(string eventName, string event_content)
     {
@@ -48,6 +50,7 @@ public class StudentEventManager : MonoBehaviour
     {
         this.username = username;
         transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "目前使用者：" + username;
+        isLogin = true;
     }
 
     public void logout()
@@ -55,6 +58,7 @@ public class StudentEventManager : MonoBehaviour
         jwtToken = "";
         username = "";
         transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "";
+        isLogin = false;
     }
 
 

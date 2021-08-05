@@ -16,6 +16,10 @@ public class Level : MonoBehaviour
     [SerializeField]
     protected Button nextLevelButton;
     [SerializeField]
+    protected Button restartLevelButton;
+    [SerializeField]
+    protected Button returnTitleButton;
+    [SerializeField]
     protected GameObject passedLevelTips;
 
     protected bool passedLevel = false;
@@ -40,16 +44,25 @@ public class Level : MonoBehaviour
 
     protected void setUp()
     {
+        levelScene nowLevel = nextLevel;
+        nowLevel--;
         nextLevelButton.onClick.AddListener(delegate
         {
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", nextLevel + "Scene"), true);
         });
-        levelScene nowLevel = nextLevel;
-        nowLevel--;
+        restartLevelButton.onClick.AddListener(delegate
+        {
+            GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", nowLevel + "Scene"), true);
+        });
+        returnTitleButton.onClick.AddListener(delegate
+        {
+            GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", "TitleScene"), true);
+        });
         if (GameSystemManager.GetSystem<StudentEventManager>())
         {
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.start", "{level:'" + nowLevel + "'}");
         }
+
         levelCost = 0;
         passedLevel = false;
     }
