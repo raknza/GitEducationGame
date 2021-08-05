@@ -40,7 +40,7 @@ public class ScreenEffect : MonoBehaviour {
         canvas.enabled = false;
         loadingGuiStyle.fontStyle = new FontStyle();
         loadingGuiStyle.fontSize = 24;
-        loadingGuiStyle.font = new Font("JF-Dot-Ayu18");
+        loadingGuiStyle.font = new Font("JF-Dot-Ayu 18");
         loadingGuiStyle.normal.textColor = Color.white;
     }
     // Update is called once per frame

@@ -65,7 +65,7 @@ public class LoginSystem : MonoBehaviour
             {
                 yield return www.SendWebRequest();
 
-                Debug.Log(www.result.ToString());
+                //Debug.Log(www.result.ToString());
                 loginJson loginResult = JsonUtility.FromJson<loginJson>(www.downloadHandler.text);
                 if (loginResult.status)
                 {
@@ -83,7 +83,7 @@ public class LoginSystem : MonoBehaviour
                     chapterButton.interactable = false;
                 }
                 //token.text = www.downloadHandler.text;
-                Debug.Log(token.text);
+                //Debug.Log(token.text);
             }
         }
     }

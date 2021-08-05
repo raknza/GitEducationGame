@@ -28,11 +28,6 @@ public class TargetSystem : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void AccomplishTarget(int index)
     {
         targetObject[index].GetComponent<Image>().color = new Color(0.19f, 1, 0.063f, 0.39f);

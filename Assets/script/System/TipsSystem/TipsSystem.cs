@@ -58,7 +58,7 @@ public class TipsSystem : MonoBehaviour
         waitEnd = true;
         GameObject tipsObject = gameObject;
         tipsObject.SetActive(false);
-        GameSystemManager.GetSystem<TimerManager>().Add(new Timer(3, TipsStart, tipsObject));
+        GameSystemManager.GetSystem<TimerManager>().Add(new Timer(4, TipsStart, tipsObject));
     }
 
     public void TipsStart(object obj)

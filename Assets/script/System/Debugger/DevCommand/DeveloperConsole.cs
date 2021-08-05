@@ -34,8 +34,7 @@ namespace Console
         public Text inputText;
         public InputField consoleInput;
 
-        [SerializeField]
-        List<string> inputLogs;
+        public List<string> inputLogs;
 
         [SerializeField]
         int inputIndex = -1;
@@ -132,7 +131,10 @@ namespace Console
                         {
                             inputLogs.Add(inputText.text);
                         }
-                        GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("console.input", "{input:'" + inputText.text + "'}");
+                        if (GameSystemManager.GetSystem<StudentEventManager>())
+                        {
+                            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("console.input", "{input:'" + inputText.text + "'}");
+                        }
                         ParseInput(inputText.text);
                         consoleInput.text = "";
                         consoleInput.ActivateInputField();
