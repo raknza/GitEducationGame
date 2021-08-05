@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class StudentEventManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class StudentEventManager : MonoBehaviour
 
     string jwtToken;
     string username;
+
 
     public void logStudentEvent(string eventName, string event_content)
     {
@@ -45,7 +47,9 @@ public class StudentEventManager : MonoBehaviour
     public void setUsername(string username)
     {
         this.username = username;
+        transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "目前使用者：" + username;
     }
+
 
 
 
