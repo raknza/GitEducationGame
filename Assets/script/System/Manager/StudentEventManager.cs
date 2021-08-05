@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 using System.Collections;
 
@@ -39,7 +39,7 @@ public class StudentEventManager : MonoBehaviour
 
     }
 
-    public void SetJwtToken(string jwtToken)
+    public void setJwtToken(string jwtToken)
     {
         this.jwtToken = jwtToken;
     }
@@ -48,6 +48,13 @@ public class StudentEventManager : MonoBehaviour
     {
         this.username = username;
         transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "目前使用者：" + username;
+    }
+
+    public void logout()
+    {
+        jwtToken = "";
+        username = "";
+        transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "";
     }
 
 

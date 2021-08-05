@@ -16,6 +16,8 @@ public class LoginSystem : MonoBehaviour
     Button startButton;
     [SerializeField]
     Button chapterButton;
+    [SerializeField]
+    Button loginButton;
 
     [SerializeField]
     InputField username;
@@ -26,16 +28,9 @@ public class LoginSystem : MonoBehaviour
     [SerializeField]
     Text token;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        loginButton.onClick.AddListener(loginDialogueShow);
     }
 
     public void loginDialogueShow()
@@ -70,11 +65,14 @@ public class LoginSystem : MonoBehaviour
                 if (loginResult.status)
                 {
                     loginStatus.text = "登入狀態：登入成功";
+                    loginButton.GetComponentInChildren<Text>().text = "登出帳號";
                     startButton.interactable = true;
                     chapterButton.interactable = true;
                     loginDialogue.SetActive(false);
-                    GameSystemManager.GetSystem<StudentEventManager>().SetJwtToken(loginResult.token);
+                    GameSystemManager.GetSystem<StudentEventManager>().setJwtToken(loginResult.token);
                     GameSystemManager.GetSystem<StudentEventManager>().setUsername(username.text);
+                    loginButton.onClick.RemoveAllListeners();
+                    loginButton.onClick.AddListener(logout);
                 }
                 else
                 {
@@ -92,5 +90,18 @@ public class LoginSystem : MonoBehaviour
     {
         public bool status;
         public string token;
+    }
+
+    public void logout()
+    {
+        GameSystemManager.GetSystem<StudentEventManager>().logout();
+        loginStatus.text = "登入狀態：已登出";
+        startButton.interactable = false;
+        chapterButton.interactable = false;
+        loginButton.GetComponentInChildren<Text>().text = "登入帳號";
+        loginButton.onClick.RemoveAllListeners();
+        loginButton.onClick.AddListener(loginDialogueShow);
+        username.text = "";
+        password.text = "";
     }
 }

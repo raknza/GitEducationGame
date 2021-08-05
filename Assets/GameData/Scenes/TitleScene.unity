@@ -451,6 +451,7 @@ MonoBehaviour:
   loginDialogue: {fileID: 1420834049}
   startButton: {fileID: 957292144}
   chapterButton: {fileID: 1287324796}
+  loginButton: {fileID: 527974176}
   username: {fileID: 2076591048}
   password: {fileID: 383098271}
   loginStatus: {fileID: 2070117800}
@@ -733,7 +734,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u767B\u5165\u5E33\u6236"
+  m_Text: "\u767B\u5165\u5E33\u865F"
 --- !u!222 &285643332
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1324,9 +1325,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 48011868}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginSystem, Assembly-CSharp
-        m_MethodName: loginDialogueShow
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
