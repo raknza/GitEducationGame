@@ -107,7 +107,7 @@ public class ScreenEffect : MonoBehaviour {
 
     private void OnGUI()
     {
-        if (GameSystemManager.GetSystem<ScreenEffect>().screen_covered || GameSystemManager.GetSystem<SceneStateManager>().loading)
+        if (GameSystemManager.GetSystem<ScreenEffect>().screen_covered)
             DrawAnimation();
     }
 
@@ -185,7 +185,7 @@ public class ScreenEffect : MonoBehaviour {
             load_message = "";
         }
         
-        GUI.DrawTexture(new Rect(0.95f * Screen.width, 0, 80, 80), load_gif[nowFram]);
+        GUI.DrawTexture(new Rect(0.925f * Screen.width, 0, 80, 80), load_gif[nowFram]);
         GUI.Label(new Rect(0.45f * Screen.width, 0.4f * Screen.height, 600, 300), "Loading" + load_message, loadingGuiStyle);
         
         //GUI.Label(new Rect(0.93f * Screen.width, 0.9f * Screen.height, 600, 100), load_progress.ToString());
