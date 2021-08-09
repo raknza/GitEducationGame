@@ -67,6 +67,15 @@ public class TipsSystem : MonoBehaviour
         gobj.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.opened", "{}");
+    }
+
+    private void OnDisable()
+    {
+        GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.closed", "{}");
+    }
 
 
     private void Update()

@@ -41,10 +41,11 @@ public class Level : MonoBehaviour
     };
     [SerializeField]
     protected levelScene nextLevel;
+    levelScene nowLevel;
 
     protected void setUp()
     {
-        levelScene nowLevel = nextLevel;
+        nowLevel = nextLevel;
         nowLevel--;
         nextLevelButton.onClick.AddListener(delegate
         {
@@ -53,10 +54,12 @@ public class Level : MonoBehaviour
         restartLevelButton.onClick.AddListener(delegate
         {
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", nowLevel + "Scene"), true);
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.restart", "{level:'" + nowLevel + "'}");
         });
         returnTitleButton.onClick.AddListener(delegate
         {
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", "TitleScene"), true);
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.quit", "{level:'" + nowLevel + "'}");
         });
         if (GameSystemManager.GetSystem<StudentEventManager>())
         {
@@ -68,15 +71,18 @@ public class Level : MonoBehaviour
     }
     protected void updateTarget()
     {
-        if (!targetSystem.targetStatus.Contains(false))
+        if (!targetSystem.targetStatus.Contains(false) && !passedLevel)
         {
             passedLevelTips.SetActive(true);
             passedLevel = true;
+            int costLines = GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count;
             passedLevelTips.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = 
-                "您是第" + 1 + "位通過此關卡的人\n" + "使用了" + GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count
-                + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
+                "您是第" + 1 + "位通過此關卡的人\n" + "使用了" + costLines + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
+
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.passed", "{level:'" + nowLevel + "'" +
+                ", lines:'" + costLines +  "', time:'" + (int)levelCost + "' }");
         }
-        else
+        else if(!passedLevel)
         {
             passedLevelTips.SetActive(false);
             passedLevel = false;
