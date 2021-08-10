@@ -34,6 +34,8 @@ public class TipsSystem : MonoBehaviour
     int dialougeStringIndex;
     bool waitEnd;
 
+    Level nowLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,12 +71,22 @@ public class TipsSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.opened", "{}");
+        if (!nowLevel)
+        {
+            nowLevel = GameObject.Find("MainScreenObject").GetComponent<Level>();
+        }
+        if (nowLevel.levelStarted)
+        {
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.opened", "{}");
+        }
     }
 
     private void OnDisable()
     {
-        GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.closed", "{}");
+        if (nowLevel.levelStarted)
+        {
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.closed", "{}");
+        }
     }
 
 

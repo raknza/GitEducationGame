@@ -23,6 +23,7 @@ public class Level : MonoBehaviour
     protected GameObject passedLevelTips;
 
     protected bool passedLevel = false;
+    public bool levelStarted { private set; get; } = false;
 
     protected float levelCost;
     protected enum levelScene
@@ -68,6 +69,7 @@ public class Level : MonoBehaviour
 
         levelCost = 0;
         passedLevel = false;
+        levelStarted = true;
     }
     protected void updateTarget()
     {
