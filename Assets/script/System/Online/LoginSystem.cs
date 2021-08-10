@@ -11,6 +11,8 @@ public class LoginSystem : MonoBehaviour
     [SerializeField]
     string loginApi;
     [SerializeField]
+    string registerApi;
+    [SerializeField]
     GameObject loginDialogue;
     [SerializeField]
     Button startButton;
@@ -53,8 +55,14 @@ public class LoginSystem : MonoBehaviour
         StartCoroutine(loginAuth());
     }
 
+    public void register()
+    {
+        StartCoroutine(registerAuth());
+    }
+
     IEnumerator loginAuth()
     {
+
         WWWForm form = new WWWForm();
         if (username.text.Equals("") || password.text.Equals(""))
         {
@@ -95,6 +103,29 @@ public class LoginSystem : MonoBehaviour
             }
         }
     }
+
+    IEnumerator registerAuth()
+    {
+        WWWForm form = new WWWForm();
+        if (username.text.Equals("") || password.text.Equals(""))
+        {
+            loginStatus.text = "登入狀態：帳號或密碼不能為空";
+            yield return null;
+        }
+        else
+        {
+            form.AddField("username", username.text);
+            form.AddField("name", username.text);
+            form.AddField("password", password.text);
+
+            using (UnityWebRequest www = UnityWebRequest.Post(registerApi, form))
+            {
+                yield return www.SendWebRequest();
+                loginStatus.text = "登入狀態：註冊成功，請按下登入鈕";
+            }
+        }
+    }
+
 
     class loginJson
     {
