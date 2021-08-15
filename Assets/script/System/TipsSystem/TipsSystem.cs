@@ -77,7 +77,7 @@ public class TipsSystem : MonoBehaviour
         }
         if (nowLevel.levelStarted)
         {
-            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.opened", "{}");
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips_opened", "{}");
         }
     }
 
@@ -85,7 +85,7 @@ public class TipsSystem : MonoBehaviour
     {
         if (nowLevel.levelStarted)
         {
-            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips.closed", "{}");
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips_closed", "{}");
         }
     }
 

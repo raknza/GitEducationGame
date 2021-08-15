@@ -55,16 +55,16 @@ public class Level : MonoBehaviour
         restartLevelButton.onClick.AddListener(delegate
         {
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", nowLevel + "Scene"), true);
-            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.restart", "{level:'" + nowLevel + "'}");
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_restart", "{level:'" + nowLevel + "'}");
         });
         returnTitleButton.onClick.AddListener(delegate
         {
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", "TitleScene"), true);
-            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.quit", "{level:'" + nowLevel + "'}");
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_quit", "{level:'" + nowLevel + "'}");
         });
         if (GameSystemManager.GetSystem<StudentEventManager>())
         {
-            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.start", "{level:'" + nowLevel + "'}");
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_start", "{level:'" + nowLevel + "'}");
         }
 
         levelCost = 0;
@@ -79,9 +79,9 @@ public class Level : MonoBehaviour
             passedLevel = true;
             int costLines = GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count;
             passedLevelTips.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = 
-                "您是第" + 1 + "位通過此關卡的人\n" + "使用了" + costLines + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
+                "您使用了" + costLines + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
 
-            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level.passed", "{level:'" + nowLevel + "'" +
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_passed", "{level:'" + nowLevel + "'" +
                 ", lines:'" + costLines +  "', time:'" + (int)levelCost + "' }");
         }
         else if(!passedLevel)
