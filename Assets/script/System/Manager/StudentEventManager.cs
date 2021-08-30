@@ -16,12 +16,12 @@ public class StudentEventManager : MonoBehaviour
     public bool isLogin { get; private set; } = false;
 
 
-    public void logStudentEvent(string eventName, string event_content)
+    public void logStudentEvent(string eventName, string eventContent)
     {
-        StartCoroutine(logEvent(eventName,event_content));
+        StartCoroutine(logEvent(eventName,eventContent));
     }
 
-    IEnumerator logEvent(string eventName, string event_content)
+    IEnumerator logEvent(string eventName, string eventContent)
     {
         WWWForm form = new WWWForm();
 
@@ -29,14 +29,14 @@ public class StudentEventManager : MonoBehaviour
 
         form.AddField("eventName", eventName);
 
-        form.AddField("event", event_content);
+        form.AddField("eventContent", eventContent);
 
 
         using (UnityWebRequest www = UnityWebRequest.Post(logEventApi, form))
         {
             yield return www.SendWebRequest();
 
-            Debug.Log("event passed : " + eventName + "\n" + event_content);
+            Debug.Log("event passed : " + eventName + "\n" + eventContent);
         }
 
     }

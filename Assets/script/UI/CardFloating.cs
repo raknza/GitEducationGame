@@ -17,6 +17,7 @@ public class CardFloating : MonoBehaviour, IPointerEnterHandler , IPointerExitHa
     public Vector3 originalPositionText;
 
     bool covered = false;
+    bool reading = false;
 
     Image img;
     // Start is called before the first frame update
@@ -37,6 +38,10 @@ public class CardFloating : MonoBehaviour, IPointerEnterHandler , IPointerExitHa
         if (covered)
         {
             dist = Mathf.Lerp(dist, max, 0.1f);
+            if ( (max - dist) < 0.01f)
+            {
+                reading = true;
+            }
         }
         else
         {
@@ -52,5 +57,12 @@ public class CardFloating : MonoBehaviour, IPointerEnterHandler , IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         covered = false;
+        if (reading)
+        {
+            Level.levelScene nowLevel = GameObject.Find("MainScreenObject").GetComponent<Level>().nowLevel;
+            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("card_read", "{level:'" + nowLevel + "'" +
+            ", card:'" + title.text + "'}");
+            reading = false;
+        }
     }
 }
