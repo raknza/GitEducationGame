@@ -54,8 +54,8 @@ public class LeaderBoard : MonoBehaviour
             {
                 index.text = index.text + (i + 1) + "." + "\n";
                 username.text = username.text + leaderboardRecords[i].username + "\n";
-                timeCost.text = timeCost.text + leaderboardRecords[i].time_cost + "¬í\n";
-                lineCost.text = lineCost.text + leaderboardRecords[i].line_cost + "¦æ\n";
+                timeCost.text = timeCost.text + leaderboardRecords[i].time_cost + "\n";
+                lineCost.text = lineCost.text + leaderboardRecords[i].line_cost + "\n";
                 time.text = time.text + leaderboardRecords[i].time + "\n";
             }
         }
