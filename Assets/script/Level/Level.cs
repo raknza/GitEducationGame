@@ -26,7 +26,7 @@ public class Level : MonoBehaviour
     public bool levelStarted { private set; get; } = false;
 
     protected float levelCost;
-    protected enum levelScene
+    public enum levelScene
     {
         Level1,
         Level2,
@@ -38,11 +38,10 @@ public class Level : MonoBehaviour
         Level8,
         Level9,
         Level10,
-
     };
     [SerializeField]
     protected levelScene nextLevel;
-    levelScene nowLevel;
+    public levelScene nowLevel { get; private set; }
 
     protected void setUp()
     {
@@ -82,7 +81,7 @@ public class Level : MonoBehaviour
                 "您使用了" + costLines + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
 
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_passed", "{level:'" + nowLevel + "'" +
-                ", lines:'" + costLines +  "', time:'" + (int)levelCost + "' }");
+                ", line_cost:'" + costLines + "', time_cost:'" + (int)levelCost + "' }");
         }
         else if(!passedLevel)
         {
@@ -98,4 +97,10 @@ public class Level : MonoBehaviour
             levelCost += Time.deltaTime;
         }
     }
+
+    public void showLevelLeaderboard()
+    {
+        GameSystemManager.GetSystem<LeaderBoard>().getLevelLeaderboard();
+    }
+
 }
