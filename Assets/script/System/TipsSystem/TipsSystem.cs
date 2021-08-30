@@ -87,6 +87,16 @@ public class TipsSystem : MonoBehaviour
         {
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips_closed", "{}");
         }
+        nowPage = 0;
+        pageText.text = (nowPage + 1) + "/" + count;
+        image.color = new Color(1, 1, 1, 0);
+        dialougeString = dialouge[nowPage];
+        if (sprites[nowPage])
+        {
+            image.sprite = sprites[nowPage];
+        }
+        dialougeStringIndex = 0;
+        waitEnd = true;
     }
 
 
@@ -139,6 +149,10 @@ public class TipsSystem : MonoBehaviour
             }
             dialougeStringIndex = 0;
             waitEnd = true;
+        }
+        else
+        {
+            gameObject.SetActive(false);
         }
     }
 
