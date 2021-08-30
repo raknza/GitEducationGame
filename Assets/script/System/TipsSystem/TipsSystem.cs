@@ -123,10 +123,10 @@ public class TipsSystem : MonoBehaviour
         {
             nowPage--;
             pageText.text = (nowPage + 1) + "/" + count;
-            image.color = new Color(1, 1, 1, 0);
             dialougeString = dialouge[nowPage];
-            if (sprites[nowPage])
+            if (sprites[nowPage] && sprites[nowPage].texture != sprites[nowPage+1].texture)
             {
+                image.color = new Color(1, 1, 1, 0);
                 image.sprite = sprites[nowPage];
             }
             dialougeStringIndex = 0;
@@ -141,10 +141,10 @@ public class TipsSystem : MonoBehaviour
         {
             nowPage++;
             pageText.text = (nowPage + 1) + "/" + count;
-            image.color = new Color(1, 1, 1, 0);
             dialougeString = dialouge[nowPage];
-            if (sprites[nowPage])
+            if (sprites[nowPage] && sprites[nowPage].texture != sprites[nowPage-1].texture)
             {
+                image.color = new Color(1, 1, 1, 0);
                 image.sprite = sprites[nowPage];
             }
             dialougeStringIndex = 0;

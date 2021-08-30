@@ -36,7 +36,7 @@ public class StudentEventManager : MonoBehaviour
         {
             yield return www.SendWebRequest();
 
-            Debug.Log("event passed : " + eventName + "\n" + eventContent);
+            //Debug.Log("event passed : " + eventName + "\n" + eventContent);
         }
 
     }
