@@ -44,7 +44,7 @@ namespace Console
             }
             if (param[1] == "commit")
             {
-                gitSystem.Commit();
+                gitSystem.Commit(param[2]);
 
             }
             if ( param[1]  == "remote") {

@@ -81,52 +81,55 @@ public class GitSystem : MonoBehaviour , Panel
 
     public void Commit(string name)
     {
+        if (hasRepository() && !conflicted)
+        {
 
-        Commit newCommit = new Commit(name, "");
-        for (int i = 0; i < modifiedFiles.Count; i++)
-        {
-            newCommit.addModifiedFile(modifiedFiles[i]);
-            fileSystem.untrackFile(modifiedFiles[i].Key);
+            Commit newCommit = new Commit(name, "");
+            for (int i = 0; i < modifiedFiles.Count; i++)
+            {
+                newCommit.addModifiedFile(modifiedFiles[i]);
+                fileSystem.untrackFile(modifiedFiles[i].Key);
 
+            }
+            if (nowCommit == null)
+            {
+                nowCommit = startCommit;
+                startCommit.SetActive(true);
+            }
+            else
+            {
+                GameObject newCommitObject = Instantiate(nowCommit, nowCommit.transform.parent);
+                newCommitObject.transform.GetChild(1).gameObject.SetActive(true);
+                newCommitObject.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 150, nowCommit.GetComponent<RectTransform>().localPosition.y, nowCommit.GetComponent<RectTransform>().localPosition.z);
+                nowCommit = newCommitObject;
+            }
+            nowCommit.GetComponentInChildren<Text>().text = newCommit.name;
+            nowCommit.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3(100 - newCommit.name.Length * 5, -49, 0);
+            // normal flag set
+            headFlag.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 160, nowCommit.GetComponent<RectTransform>().localPosition.y + 5, headFlag.GetComponent<RectTransform>().localPosition.z);
+            // new branch and start commit
+            if (localRepository.nowBranch.branchStart)
+            {
+                nowCommit.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x, nowCommit.GetComponent<RectTransform>().localPosition.y - 145, nowCommit.GetComponent<RectTransform>().localPosition.z);
+                nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 45);
+                nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector3(67, 45, 0);
+                headFlag.GetComponent<RectTransform>().localPosition = new Vector3(headFlag.GetComponent<RectTransform>().localPosition.x, headFlag.GetComponent<RectTransform>().localPosition.y - 145 + 5, headFlag.GetComponent<RectTransform>().localPosition.z);
+                nowCommit.GetComponent<Image>().color = Random.ColorHSV();
+            }
+            else
+            {
+                nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 0);
+                nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector3(67, 0, 0);
+            }
+            headFlag.transform.GetChild(1).gameObject.SetActive(true);
+            localRepository.Commit(newCommit);
+            modifiedFiles = new List<KeyValuePair<string, string>>();
+            nowCommit.name = name + "Commit";
+            commitObjects.Add(nowCommit);
+            //nowCommit.GetComponent<Image>().color = new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255));
+            sync = false;
+            hasPush = false;
         }
-        if (nowCommit == null)
-        {
-            nowCommit = startCommit;
-            startCommit.SetActive(true);
-        }
-        else
-        {
-            GameObject newCommitObject = Instantiate(nowCommit, nowCommit.transform.parent);
-            newCommitObject.transform.GetChild(1).gameObject.SetActive(true);
-            newCommitObject.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 150, nowCommit.GetComponent<RectTransform>().localPosition.y, nowCommit.GetComponent<RectTransform>().localPosition.z);
-            nowCommit = newCommitObject;
-        }
-        nowCommit.GetComponentInChildren<Text>().text = newCommit.name;
-        nowCommit.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3(100 - newCommit.name.Length * 5, -49, 0);
-        // normal flag set
-        headFlag.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 160, nowCommit.GetComponent<RectTransform>().localPosition.y + 5, headFlag.GetComponent<RectTransform>().localPosition.z);
-        // new branch and start commit
-        if (localRepository.nowBranch.branchStart)
-        {
-            nowCommit.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x, nowCommit.GetComponent<RectTransform>().localPosition.y - 145, nowCommit.GetComponent<RectTransform>().localPosition.z);
-            nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 45);
-            nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector3(67,45,0);
-            headFlag.GetComponent<RectTransform>().localPosition = new Vector3(headFlag.GetComponent<RectTransform>().localPosition.x, headFlag.GetComponent<RectTransform>().localPosition.y - 145 + 5, headFlag.GetComponent<RectTransform>().localPosition.z);
-            nowCommit.GetComponent<Image>().color = Random.ColorHSV();
-        }
-        else
-        {
-            nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0,0);
-            nowCommit.transform.GetChild(1).GetComponent<RectTransform>().localPosition = new Vector3(67, 0, 0);
-        }
-        headFlag.transform.GetChild(1).gameObject.SetActive(true);
-        localRepository.Commit(newCommit);
-        modifiedFiles = new List<KeyValuePair<string, string>>();
-        nowCommit.name = name + "Commit";
-        commitObjects.Add(nowCommit);
-        //nowCommit.GetComponent<Image>().color = new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255));
-        sync = false;
-        hasPush = false;
     }
 
     public void Commit()
