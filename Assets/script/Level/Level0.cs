@@ -11,7 +11,7 @@ public class Level0 : MonoBehaviour
 
     public void StartGame()
     {
-        GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState( new LoadSceneState("MainSceneState", "Level1Scene") ,true);
+        GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState( new LoadSceneState("MainSceneState", "Level0Scene") ,true);
     }
     
     public void openChapterSelector()

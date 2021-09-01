@@ -14,7 +14,6 @@ public class TipsSystem : MonoBehaviour
 
     [SerializeField]
     int count;
-
     int nowPage = 0;
 
     [SerializeField]
@@ -124,9 +123,12 @@ public class TipsSystem : MonoBehaviour
             nowPage--;
             pageText.text = (nowPage + 1) + "/" + count;
             dialougeString = dialouge[nowPage];
-            if (sprites[nowPage] && sprites[nowPage].texture != sprites[nowPage+1].texture)
+            if (sprites[nowPage] )
             {
-                image.color = new Color(1, 1, 1, 0);
+                if (sprites[nowPage - 1] && (sprites[nowPage].texture != sprites[nowPage + 1].texture))
+                {
+                    image.color = new Color(1, 1, 1, 0);
+                }
                 image.sprite = sprites[nowPage];
             }
             dialougeStringIndex = 0;
@@ -142,9 +144,12 @@ public class TipsSystem : MonoBehaviour
             nowPage++;
             pageText.text = (nowPage + 1) + "/" + count;
             dialougeString = dialouge[nowPage];
-            if (sprites[nowPage] && sprites[nowPage].texture != sprites[nowPage-1].texture)
+            if (sprites[nowPage])
             {
-                image.color = new Color(1, 1, 1, 0);
+                if (sprites[nowPage - 1] && (sprites[nowPage].texture != sprites[nowPage - 1].texture))
+                {
+                    image.color = new Color(1, 1, 1, 0);
+                }
                 image.sprite = sprites[nowPage];
             }
             dialougeStringIndex = 0;
