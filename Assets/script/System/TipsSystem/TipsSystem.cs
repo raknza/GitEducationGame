@@ -35,6 +35,9 @@ public class TipsSystem : MonoBehaviour
 
     Level nowLevel;
 
+    public bool hasRead { private set; get; } = false;
+    bool startDialouge = false;
+    public bool closeWhenEndPage = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,14 +61,12 @@ public class TipsSystem : MonoBehaviour
 
         waitEnd = true;
         GameObject tipsObject = gameObject;
-        tipsObject.SetActive(false);
-        GameSystemManager.GetSystem<TimerManager>().Add(new Timer(4, TipsStart, tipsObject));
+        GameSystemManager.GetSystem<TimerManager>().Add(new Timer(4, TipsStart, null));
     }
 
     public void TipsStart(object obj)
     {
-        GameObject gobj = (GameObject)obj;
-        gobj.SetActive(true);
+        startDialouge = true;
     }
 
     private void OnEnable()
@@ -101,18 +102,21 @@ public class TipsSystem : MonoBehaviour
 
     private void Update()
     {
-        dialougeText.text = dialougeString.Substring(0,dialougeStringIndex);
-        if ( dialougeStringIndex < dialougeString.Length && waitEnd == true)
+        if (startDialouge)
         {
-            StartCoroutine(WaitForDialouge());
-        }
-        if (sprites[nowPage])
-        {
-            image.color = new Color(1, 1, 1, Mathf.Lerp(image.color.a, 1, 0.04f));
-        }
-        else
-        {
-            image.color = new Color(0,0,0,0);
+            dialougeText.text = dialougeString.Substring(0, dialougeStringIndex);
+            if (dialougeStringIndex < dialougeString.Length && waitEnd == true)
+            {
+                StartCoroutine(WaitForDialouge());
+            }
+            if (sprites[nowPage])
+            {
+                image.color = new Color(1, 1, 1, Mathf.Lerp(image.color.a, 1, 0.04f));
+            }
+            else
+            {
+                image.color = new Color(0, 0, 0, 0);
+            }
         }
     }
 
@@ -125,7 +129,7 @@ public class TipsSystem : MonoBehaviour
             dialougeString = dialouge[nowPage];
             if (sprites[nowPage] )
             {
-                if (sprites[nowPage - 1] && (sprites[nowPage].texture != sprites[nowPage + 1].texture))
+                if (sprites[nowPage + 1] && (sprites[nowPage].texture != sprites[nowPage + 1].texture))
                 {
                     image.color = new Color(1, 1, 1, 0);
                 }
@@ -154,8 +158,12 @@ public class TipsSystem : MonoBehaviour
             }
             dialougeStringIndex = 0;
             waitEnd = true;
+            if(nowPage == count - 1)
+            {
+                hasRead = true;
+            }
         }
-        else
+        else if(closeWhenEndPage)
         {
             gameObject.SetActive(false);
         }

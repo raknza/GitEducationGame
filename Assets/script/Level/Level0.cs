@@ -2,32 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level0 : MonoBehaviour
+public class Level0 : Level
 {
     [SerializeField]
-    GameObject titleObjects;
-    [SerializeField]
-    GameObject chapterSelector;
-
-    public void StartGame()
+    TipsSystem tipsSystem;
+    private void Start()
     {
-        GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState( new LoadSceneState("MainSceneState", "Level0Scene") ,true);
+        setUp();
+        tipsSystem.closeWhenEndPage = false;
     }
-    
-    public void openChapterSelector()
+    // Update is called once per frame
+    void Update()
     {
-        titleObjects.SetActive(false);
-        chapterSelector.SetActive(true);
-    }
-
-    public void closeChapterSelector()
-    {
-        titleObjects.SetActive(true);
-        chapterSelector.SetActive(false);
-    }
-
-    public void levelStart(string level)
-    {
-        GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", "Level" + level + "Scene"), true);
+        if (!targetSystem.targetStatus[0] && tipsSystem.hasRead)
+        {
+            targetSystem.targetStatus[0] = true;
+            targetSystem.AccomplishTarget(0);
+        }
+        updateTarget();
+        levelCostCount();
     }
 }
