@@ -19,18 +19,15 @@ public class ChapterSystem : MonoBehaviour
             + username + "&filterKey=event_name" + "&filterValue=level_passed"))
         {
             yield return www.SendWebRequest();
-            Debug.Log(www.downloadHandler.text);
+            // Debug.Log(www.downloadHandler.text);
             string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
             levelPassedEvent[] studentEvents = JsonHelper.FromJson<levelPassedEvent>(jsonString);
-            for(int i=0; i< studentEvents.Length; i++)
+            chapterButtons[0].interactable = true;
+            for (int i=0; i< studentEvents.Length; i++)
             {
                 Level.levelScene myStatus;
                 Enum.TryParse(studentEvents[i].event_content.level, out myStatus);
-                if (myStatus == Level.levelScene.Level0)
-                {
-                    chapterButtons[0].interactable = true;
-                }
-                else
+                if (myStatus != Level.levelScene.Level0)
                 {
                     chapterButtons[(int)myStatus + 1].interactable = true;
                     if (chapterButtons[(int)myStatus+1])
@@ -38,7 +35,7 @@ public class ChapterSystem : MonoBehaviour
                         chapterButtons[(int)myStatus+1].interactable = true;
                     }
                 }
-                Debug.Log(studentEvents[i].event_content.level + " : " + myStatus);
+                // Debug.Log(studentEvents[i].event_content.level + " : " + myStatus);
                 /*if(studentEvents[i].event_content.level == ((Level.levelScene)i).ToString())
                 {
                     chapterButtons[(int)myStatus].interactable = true;

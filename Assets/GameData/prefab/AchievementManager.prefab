@@ -116,7 +116,8 @@ MonoBehaviour:
   - name: "\u6E2C\u8A66\u6210\u5C31"
     description: "\u6E2C\u8A66\u6210\u5C31"
     icon: {fileID: 21300000, guid: efcab8c0ea1f67448a89345d876b32fa, type: 3}
-  testInput: First
+  logAchievementApi: http://140.134.25.49:8080/logAchievement
+  testInput: 0
   testSwitch: 0
 --- !u!1 &3440097381936925238
 GameObject:

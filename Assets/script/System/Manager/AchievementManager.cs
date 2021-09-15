@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.Networking;
 
 [Serializable]
 public class Achievement
@@ -21,15 +22,17 @@ public class AchievementManager : MonoBehaviour
     [SerializeField]
     List<Achievement> achievements;
 
-    public string testInput;
+    [SerializeField]
+    string logAchievementApi;
+
+    public int testInput;
     public bool testSwitch;
 
-    public void achieve(string name)
+    public void achieve(int achievementId)
     {
-        Achievement achieve = achievements.Find(achievement => achievement.name == name);
-        if (achieve != null)
+        if (achievements[achievementId] != null)
         {
-            achievementObject.popup(achieve.icon, achieve.description);
+            achievementObject.popup(achievements[achievementId].icon, achievements[achievementId].description);
         }
     }
 
@@ -40,5 +43,28 @@ public class AchievementManager : MonoBehaviour
             achieve(testInput);
             testSwitch = false;
         }
+    }
+
+    public IEnumerator logAchievement(int achievementId)
+    {
+        WWWForm form = new WWWForm();
+
+        form.AddField("username", GameSystemManager.GetSystem<StudentEventManager>().username);
+
+        string achievement = "{ id:" + (achievementId + 1) + ",title: '" + achievements[achievementId].name + "'}";
+        form.AddField("achievement", achievement);
+
+
+        using (UnityWebRequest www = UnityWebRequest.Post(logAchievementApi, form))
+        {
+            yield return www.SendWebRequest();
+
+            string result = www.downloadHandler.text;
+            if (!result.Equals("already have achievement"))
+            {
+                achieve(achievementId);
+            }
+        }
+
     }
 }

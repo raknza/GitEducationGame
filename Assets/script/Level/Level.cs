@@ -85,7 +85,7 @@ public class Level : MonoBehaviour
                 ", line_cost:'" + costLines + "', time_cost:'" + (int)levelCost + "' }");
             if (nowLevel == levelScene.Level1)
             {
-                GameSystemManager.GetSystem<AchievementManager>().achieve("First");
+                StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(0));
             }
 
             StartCoroutine(GameSystemManager.GetSystem<LeaderBoard>().logLevelRecord((int)levelCost, costLines, (int)nowLevel + 1));

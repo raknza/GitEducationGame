@@ -78,9 +78,9 @@ public class LeaderBoard : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequest.Post(logLevelRecordApi, form))
         {
-            Debug.Log(level);
+            // Debug.Log(level);
             yield return www.SendWebRequest();
-            Debug.Log(www.downloadHandler.text);
+            // Debug.Log(www.downloadHandler.text);
         }
 
     }
