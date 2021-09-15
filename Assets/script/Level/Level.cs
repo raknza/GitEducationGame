@@ -38,6 +38,7 @@ public class Level : MonoBehaviour
         Level8,
         Level9,
         Level10,
+        Level0,
     };
     [SerializeField]
     protected levelScene nextLevel;
@@ -87,6 +88,8 @@ public class Level : MonoBehaviour
                 GameSystemManager.GetSystem<AchievementManager>().achieve("First");
             }
 
+            StartCoroutine(GameSystemManager.GetSystem<LeaderBoard>().logLevelRecord((int)levelCost, costLines, (int)nowLevel + 1));
+
         }
         else if(!passedLevel)
         {
@@ -102,6 +105,8 @@ public class Level : MonoBehaviour
             levelCost += Time.deltaTime;
         }
     }
+
+
 
     public void showLevelLeaderboard()
     {

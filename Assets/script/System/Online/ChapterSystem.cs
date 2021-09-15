@@ -26,10 +26,17 @@ public class ChapterSystem : MonoBehaviour
             {
                 Level.levelScene myStatus;
                 Enum.TryParse(studentEvents[i].event_content.level, out myStatus);
-                chapterButtons[(int)myStatus].interactable = true;
-                if (chapterButtons[(int)myStatus])
+                if (myStatus == Level.levelScene.Level0)
                 {
-                    chapterButtons[(int)myStatus].interactable = true;
+                    chapterButtons[0].interactable = true;
+                }
+                else
+                {
+                    chapterButtons[(int)myStatus + 1].interactable = true;
+                    if (chapterButtons[(int)myStatus+1])
+                    {
+                        chapterButtons[(int)myStatus+1].interactable = true;
+                    }
                 }
                 Debug.Log(studentEvents[i].event_content.level + " : " + myStatus);
                 /*if(studentEvents[i].event_content.level == ((Level.levelScene)i).ToString())
@@ -47,6 +54,11 @@ public class ChapterSystem : MonoBehaviour
     public void initialChapterButtons(string username)
     {
         StartCoroutine(getLevelPassed(username));
+    }
+
+    private void OnEnable()
+    {
+        initialChapterButtons(GameSystemManager.GetSystem<StudentEventManager>().username);
     }
 
     [System.Serializable]

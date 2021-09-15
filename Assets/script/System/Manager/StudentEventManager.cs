@@ -11,7 +11,7 @@ public class StudentEventManager : MonoBehaviour
     string logEventApi;
 
     string jwtToken;
-    string username;
+    public string username {  get;  private set; }
 
     public bool isLogin { get; private set; } = false;
 

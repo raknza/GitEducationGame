@@ -10,6 +10,8 @@ public class LeaderBoard : MonoBehaviour
     [SerializeField]
     string leaderBoardApi;
     [SerializeField]
+    string logLevelRecordApi;
+    [SerializeField]
     Text content;
     [SerializeField]
     Text head;
@@ -61,6 +63,28 @@ public class LeaderBoard : MonoBehaviour
         }
 
     }
+
+
+    public IEnumerator logLevelRecord(int timeCost , int lineCost , int level)
+    {
+
+        WWWForm form = new WWWForm();
+
+        form.AddField("username", GameSystemManager.GetSystem<StudentEventManager>().username);
+        form.AddField("timeCost", timeCost);
+        form.AddField("lineCost", lineCost);
+        form.AddField("level", level);
+
+
+        using (UnityWebRequest www = UnityWebRequest.Post(logLevelRecordApi, form))
+        {
+            Debug.Log(level);
+            yield return www.SendWebRequest();
+            Debug.Log(www.downloadHandler.text);
+        }
+
+    }
+
 
     [System.Serializable]
     public class LevelRecord

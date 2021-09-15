@@ -20,8 +20,6 @@ public class LoginSystem : MonoBehaviour
     Button chapterButton;
     [SerializeField]
     Button loginButton;
-    [SerializeField]
-    ChapterSystem chapterSystem;
 
     [SerializeField]
     InputField username;
@@ -93,7 +91,6 @@ public class LoginSystem : MonoBehaviour
                     GameSystemManager.GetSystem<StudentEventManager>().setUsername(username.text);
                     loginButton.onClick.RemoveAllListeners();
                     loginButton.onClick.AddListener(logout);
-                    chapterSystem.initialChapterButtons(username.text);
                 }
                 else
                 {
