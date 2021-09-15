@@ -82,6 +82,11 @@ public class Level : MonoBehaviour
 
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_passed", "{level:'" + nowLevel + "'" +
                 ", line_cost:'" + costLines + "', time_cost:'" + (int)levelCost + "' }");
+            if (nowLevel == levelScene.Level1)
+            {
+                GameSystemManager.GetSystem<AchievementManager>().achieve("First");
+            }
+
         }
         else if(!passedLevel)
         {
