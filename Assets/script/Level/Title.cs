@@ -30,4 +30,9 @@ public class Title: MonoBehaviour
     {
         GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", "Level" + level + "Scene"), true);
     }
+
+    public void openAchievementReader()
+    {
+        GameSystemManager.GetSystem<AchievementManager>().openReader();
+    }
 }
