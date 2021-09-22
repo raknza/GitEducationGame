@@ -3289,11 +3289,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject:
   - {fileID: 856278118}
-  - {fileID: 660719796}
-  targetStatus: 0000
+  targetStatus: 00
   targets:
   - "1. \u76EE\u6A191"
-  - "2. \u76EE\u6A192"
 --- !u!1 &945259671
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,6 +4167,7 @@ MonoBehaviour:
   - {fileID: 0}
   dialougeWaitSeconds: 0.055
   image: {fileID: 1405624000}
+  closeWhenEndPage: 1
 --- !u!1 &1104619837
 GameObject:
   m_ObjectHideFlags: 0
@@ -7126,7 +7125,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3093567, y: -909.50244}
+  m_AnchoredPosition: {x: -7.3093567, y: -909.3634}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1807236752
