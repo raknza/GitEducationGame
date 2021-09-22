@@ -9,6 +9,7 @@ using UnityEngine.UI;
 [Serializable]
 public class Achievement
 {
+    public int id;
     public string name;
     public string description;
     public Sprite icon;
@@ -33,6 +34,8 @@ public class AchievementManager : MonoBehaviour
 
     [SerializeField]
     string logAchievementApi;
+    [SerializeField]
+    string getOneUserAchievementsApi;
 
     public int testInput;
     public bool testSwitch;
@@ -45,8 +48,9 @@ public class AchievementManager : MonoBehaviour
         {
             GameObject achievementObject = Instantiate(achievementlockedObject, achievementlockedObject.transform.parent);
             achievementObject.transform.GetChild(4).GetComponent<Text>().text = achievement.description;
+            achievement.id = index + 1;
             achievementObject.SetActive(true);
-            achievementObject.name = "achievement" + index + "locked";
+            achievementObject.name = "achievement" + achievement.id + "locked";
             achievementObjects.Add(achievementObject);
 
             achievementObject = Instantiate(achievementUnlockedObject, achievementUnlockedObject.transform.parent);
@@ -54,20 +58,23 @@ public class AchievementManager : MonoBehaviour
             achievementObject.transform.GetChild(2).GetComponent<Text>().text = achievement.name;
             achievementObject.transform.GetChild(3).GetComponent<Text>().text = achievement.description;
             //achievementObject.transform.GetChild(4).GetComponent<Text>().text = achievement.description;
-            achievementObject.name = "achievement" + index + "unlocked";
+            achievementObject.name = "achievement" + achievement.id + "unlocked";
             achievementObjects.Add(achievementObject);
             index++;
         }
     }
 
-    public void achieve(int achievementId)
+    public void achieve(int achievementId, bool animation = true)
     {
         if (achievements[achievementId] != null)
         {
-            achievementPopupObject.popup(achievements[achievementId].icon, achievements[achievementId].description);
+            if (animation)
+            {
+                achievementPopupObject.popup(achievements[achievementId-1].icon, achievements[achievementId-1].description);
+            }
 
-            achievementObjects.Find(x => x.name == "achievement" + achievementId + "locked").SetActive(false);
-            achievementObjects.Find(x => x.name == "achievement" + achievementId + "unlocked").SetActive(true);
+            achievementObjects.Find(x => x.name == "achievement" + (achievementId) + "locked").SetActive(false);
+            achievementObjects.Find(x => x.name == "achievement" + (achievementId) + "unlocked").SetActive(true);
         }
     }
 
@@ -86,7 +93,7 @@ public class AchievementManager : MonoBehaviour
 
         form.AddField("username", GameSystemManager.GetSystem<StudentEventManager>().username);
 
-        string achievement = "{ id:" + (achievementId + 1) + ",title: '" + achievements[achievementId].name + "'}";
+        string achievement = "{ id:" + (achievementId) + "}";
         form.AddField("achievement", achievement);
 
 
@@ -104,8 +111,40 @@ public class AchievementManager : MonoBehaviour
 
     }
 
+    public IEnumerator getUserAchievements()
+    {
+
+
+
+        using (UnityWebRequest www = UnityWebRequest.Get(getOneUserAchievementsApi + "?username=" + GameSystemManager.GetSystem<StudentEventManager>().username))
+        {
+            yield return www.SendWebRequest();
+
+            string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
+            AchievementRecord[] achievementRecords = JsonHelper.FromJson<AchievementRecord>(jsonString);
+            for (int i = 0; i < achievementRecords.Length; i++) {
+                Debug.Log(achievementRecords[i].achievement.id);
+                achieve(achievementRecords[i].achievement.id,false);
+            }
+            /*if (!result.Equals("already have achievement"))
+            {
+                achieve(achievementId);
+            }*/
+
+        }
+
+    }
+
     public void openReader()
     {
+        StartCoroutine(getUserAchievements());
         achievementReader.SetActive(true);
+    }
+
+    [Serializable]
+    public class AchievementRecord
+    {
+        public string time;
+        public Achievement achievement;
     }
 }

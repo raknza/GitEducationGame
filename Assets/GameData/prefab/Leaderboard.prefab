@@ -894,6 +894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaderBoardApi: http://140.134.25.49:8080/getLevelLeaderboard
+  logLevelRecordApi: http://140.134.25.49:8080/logLevelRecord
   content: {fileID: 6678413017801884358}
   head: {fileID: 6678413019810769950}
   index: {fileID: 6678413017801884358}
@@ -920,7 +921,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &479789252597198088
 MonoBehaviour:

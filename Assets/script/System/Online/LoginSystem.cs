@@ -20,6 +20,8 @@ public class LoginSystem : MonoBehaviour
     Button chapterButton;
     [SerializeField]
     Button loginButton;
+    [SerializeField]
+    Button achievementButton;
 
     [SerializeField]
     InputField username;
@@ -40,6 +42,7 @@ public class LoginSystem : MonoBehaviour
             loginButton.GetComponentInChildren<Text>().text = "登出帳號";
             startButton.interactable = true;
             chapterButton.interactable = true;
+            achievementButton.interactable = true;
             loginButton.onClick.RemoveAllListeners();
             loginButton.onClick.AddListener(logout);
         }
@@ -91,12 +94,11 @@ public class LoginSystem : MonoBehaviour
                     GameSystemManager.GetSystem<StudentEventManager>().setUsername(username.text);
                     loginButton.onClick.RemoveAllListeners();
                     loginButton.onClick.AddListener(logout);
+                    achievementButton.interactable = true;
                 }
                 else
                 {
                     loginStatus.text = "登入狀態：密碼錯誤或帳號不存在";
-                    startButton.interactable = false;
-                    chapterButton.interactable = false;
                 }
                 //token.text = www.downloadHandler.text;
                 //Debug.Log(token.text);
@@ -139,6 +141,7 @@ public class LoginSystem : MonoBehaviour
         loginStatus.text = "登入狀態：已登出";
         startButton.interactable = false;
         chapterButton.interactable = false;
+        achievementButton.interactable = false;
         loginButton.GetComponentInChildren<Text>().text = "登入帳號";
         loginButton.onClick.RemoveAllListeners();
         loginButton.onClick.AddListener(loginDialogueShow);
