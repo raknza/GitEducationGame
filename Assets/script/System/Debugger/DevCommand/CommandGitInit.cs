@@ -24,45 +24,96 @@ namespace Console
         public override void RunCommand(string[] param)
         {
             GitSystem gitSystem = GameObject.Find("GitObject").GetComponent<GitSystem>();
+            DeveloperConsole console = GameObject.Find("DeveloperConsoleObject").GetComponent<DeveloperConsole>();
+            if( param.Length == 1)
+            {
+                console.AddMessageToConsole("Error format");
+                return;
+            }
             if ( param[1] == "init")
             {
-                bool exist = GameObject.Find("GitObject").GetComponent<GitSystem>();
-                if ( exist ) {
-                    GameObject.Find("GitObject").GetComponent<GitSystem>().buildRepository();
+                if (param.Length != 2)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    bool exist = GameObject.Find("GitObject").GetComponent<GitSystem>();
+                    if (exist)
+                    {
+                        GameObject.Find("GitObject").GetComponent<GitSystem>().buildRepository();
+                    }
                 }
 
             }
             if (param[1] == "add")
             {
-                gitSystem.trackFile(param[2], "test");
+                if (param.Length != 3)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.trackFile(param[2], "test");
+                }
 
             }
             if (param[1] == "remove")
             {
-                gitSystem.untrackFile(param[2]);
+                if (param.Length != 3)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.untrackFile(param[2]);
+                }
 
             }
             if (param[1] == "commit")
             {
-                gitSystem.Commit(param[2]);
+                if (param.Length != 2)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.Commit(param[2]);
+                }
 
             }
             if ( param[1]  == "remote") {
-                if (param[2] == "add")
+
+                if (param[2] == "add" && param.Length == 4)
                 {
                     gitSystem.addRemote(param[3]);
+                }
+                else
+                {
+                    console.AddMessageToConsole("Error format");
                 }
             }
             if( param[1] == "push")
             {
-                gitSystem.Push();
+                if (param.Length != 2)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.Push();
+                }
             }
             if (param[1] == "clone")
             {
+                if (param.Length != 3)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
                 bool clone = gitSystem.cloneRepository(param[2]);
                 if (!clone)
                 {
-
+                    console.AddMessageToConsole("Cannot clone");
                 }
             }
             if (param[1] == "branch")
@@ -71,7 +122,7 @@ namespace Console
                 {
                     Debug.Log(gitSystem.localRepository.branches.ToString());
                 }
-                else if(param.Length == 3)
+                else if (param.Length == 3)
                 {
                     gitSystem.createBranch(param[2]);
                 }
@@ -79,22 +130,46 @@ namespace Console
                 {
                     gitSystem.deleteBranch(param[3]);
                 }
+                else
+                {
+                    console.AddMessageToConsole("Error format");
+                }
 
             }
             if (param[1] == "checkout")
             {
-                gitSystem.checkout(param[2]);
+                if (param.Length != 3)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.checkout(param[2]);
+                }
 
             }
             if (param[1] == "merge")
             {
-                gitSystem.Merge(param[2]);
+                if (param.Length != 3)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.Merge(param[2]);
+                }
 
             }
             if (param[1] == "pull")
             {
-                gitSystem.Pull(param[2],param[3]);
-
+                if (param.Length != 4)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.Pull(param[2], param[3]);
+                }
             }
 
         }
