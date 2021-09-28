@@ -123,7 +123,16 @@ public class LoginSystem : MonoBehaviour
             using (UnityWebRequest www = UnityWebRequest.Post(registerApi, form))
             {
                 yield return www.SendWebRequest();
-                loginStatus.text = "登入狀態：註冊成功，請按下登入鈕";
+                //Debug.Log(www.result.ToString());
+                string result = www.downloadHandler.text;
+                if (result.Equals("Username had already been registered"))
+                {
+                    loginStatus.text = "登入狀態：註冊失敗，帳號已被註冊";
+                }
+                else
+                {
+                    loginStatus.text = "登入狀態：註冊成功，請按下登入鈕";
+                }
             }
         }
     }
