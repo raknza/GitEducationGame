@@ -66,7 +66,7 @@ public class AchievementManager : MonoBehaviour
 
     public void achieve(int achievementId, bool animation = true)
     {
-        if (achievements[achievementId] != null)
+        if (achievements[achievementId-1] != null)
         {
             if (animation)
             {
