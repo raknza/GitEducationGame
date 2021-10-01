@@ -83,7 +83,7 @@ public class SceneStateManager {
             loading = true;
             if (_scene_next.loadfinished)
             {
-                Debug.Log("Loading Finish");
+                //Debug.Log("Loading Finish");
             }
         }
         else

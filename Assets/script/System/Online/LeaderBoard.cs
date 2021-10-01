@@ -52,7 +52,7 @@ public class LeaderBoard : MonoBehaviour
             //Debug.Log(www.downloadHandler.text);
             string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
             LevelRecord[] leaderboardRecords = JsonHelper.FromJson<LevelRecord>(jsonString);
-            for(int i = 0; i< leaderboardRecords.Length; i++)
+            for(int i = 0; i< leaderboardRecords.Length && (i < 10) ; i++)
             {
                 index.text = index.text + (i + 1) + "." + "\n";
                 username.text = username.text + leaderboardRecords[i].username + "\n";
