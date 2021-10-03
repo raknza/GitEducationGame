@@ -72,13 +72,13 @@ namespace Console
             }
             if (param[1] == "commit")
             {
-                if (param.Length != 2)
+                if (param.Length != 4 || param[2] != "-m" )
                 {
                     console.AddMessageToConsole("Error format");
                 }
                 else
                 {
-                    gitSystem.Commit(param[2]);
+                    gitSystem.Commit(param[3]);
                 }
 
             }
