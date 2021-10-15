@@ -133,7 +133,7 @@ namespace Console
                         }
                         if (GameSystemManager.GetSystem<StudentEventManager>())
                         {
-                            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("console.input", "{input:'" + inputText.text + "'}");
+                            GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("console_input", "{input:'" + inputText.text + "'}");
                         }
                         ParseInput(inputText.text);
                         consoleInput.text = "";

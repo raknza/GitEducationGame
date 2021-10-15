@@ -215,17 +215,17 @@ MonoBehaviour:
     description: "\u572830\u79D2\u5167\u901A\u904E\u4E00\u95DC\u3002"
     icon: {fileID: 21300000, guid: 9e4da094eb28eba43861fc5208f5d07d, type: 3}
   - id: 0
-    name: "\u6E2C\u8A66\u6210\u5C31"
-    description: "\u6E2C\u8A66\u6210\u5C31"
-    icon: {fileID: 21300000, guid: efcab8c0ea1f67448a89345d876b32fa, type: 3}
+    name: "\u71B1\u611BCoding"
+    description: "\u8F38\u5165\u8D85\u904E\u4E00\u767E\u884C\u6307\u4EE4"
+    icon: {fileID: 21300000, guid: 9192047d141926d408fd0542e042b00e, type: 3}
   - id: 0
-    name: "\u6E2C\u8A66\u6210\u5C31"
-    description: "\u6E2C\u8A66\u6210\u5C31"
-    icon: {fileID: 21300000, guid: efcab8c0ea1f67448a89345d876b32fa, type: 3}
+    name: "\u6211\u4E0D\u9700\u8981\u63D0\u793A"
+    description: "\u628A\u63D0\u793A\u76F4\u63A5\u95DC\u6389"
+    icon: {fileID: 21300000, guid: eed06147b3c5a174996c748d8a4de56f, type: 3}
   - id: 0
-    name: "\u6E2C\u8A66\u6210\u5C31"
-    description: "\u6E2C\u8A66\u6210\u5C31"
-    icon: {fileID: 21300000, guid: efcab8c0ea1f67448a89345d876b32fa, type: 3}
+    name: "\u6B7B\u4EA1\u56DE\u6B78"
+    description: "\u5728\u4E00\u6B21\u904A\u6232\u904E\u7A0B\u4E2D\u91CD\u958B\u4E00\u500B\u95DC\u5361\u8D85\u904E10\u6B21"
+    icon: {fileID: 21300000, guid: 2dff38bfe18794a4baf9d43f02701253, type: 3}
   achievementUnlockedObject: {fileID: 3211414787003429395}
   achievementlockedObject: {fileID: 3211414786515811380}
   achievementReader: {fileID: 3211414785925075114}

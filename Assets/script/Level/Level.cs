@@ -28,6 +28,7 @@ public class Level : MonoBehaviour
 
     protected float levelCost;
     protected int  costLines;
+    public  static int restartCount { private set; get; } = 0;
     public enum levelScene
     {
         Level1,
@@ -50,17 +51,24 @@ public class Level : MonoBehaviour
     {
         nowLevel = nextLevel;
         nowLevel--;
+        if(nextLevel == levelScene.Level1)
+        {
+            nowLevel = levelScene.Level0;
+        }
         nextLevelButton.onClick.AddListener(delegate
         {
+            restartCount = 0;
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", nextLevel + "Scene"), true);
         });
         restartLevelButton.onClick.AddListener(delegate
         {
+            restartCount++;
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", nowLevel + "Scene"), true);
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_restart", "{level:'" + nowLevel + "'}");
         });
         returnTitleButton.onClick.AddListener(delegate
         {
+            restartCount = 0;
             GameSystemManager.GetSystem<SceneStateManager>().LoadSceneState(new LoadSceneState("MainSceneState", "TitleScene"), true);
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_quit", "{level:'" + nowLevel + "'}");
         });
@@ -68,7 +76,6 @@ public class Level : MonoBehaviour
         {
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_start", "{level:'" + nowLevel + "'}");
         }
-
         levelCost = 0;
         passedLevel = false;
         levelStarted = true;
@@ -79,10 +86,13 @@ public class Level : MonoBehaviour
         {
             passedLevelTips.SetActive(true);
             passedLevel = true;
-            costLines = GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count;
-            passedLevelTips.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = 
-                "您使用了" + costLines + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
+            if (nowLevel != levelScene.Level0)
+            {
+                costLines = GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count;
 
+                passedLevelTips.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text =
+                    "您使用了" + costLines + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
+            }
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_passed", "{level:'" + nowLevel + "'" +
                 ", line_cost:'" + costLines + "', time_cost:'" + (int)levelCost + "' }");
             StartCoroutine(achievementSet());
@@ -117,18 +127,21 @@ public class Level : MonoBehaviour
         {
             StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(7));
         }
-
+        int levelInteger = (int)nowLevel + 1;
+        if(nowLevel == levelScene.Level0)
+        {
+            levelInteger = 0;
+        }
         // log level record
-        yield return StartCoroutine(GameSystemManager.GetSystem<LeaderBoard>().logLevelRecord((int)levelCost, costLines, (int)nowLevel + 1));
+        yield return StartCoroutine(GameSystemManager.GetSystem<LeaderBoard>().logLevelRecord((int)levelCost, costLines, levelInteger ));
 
         // achieve 4 
-        using (UnityWebRequest www = UnityWebRequest.Get(GameSystemManager.GetSystem<LeaderBoard>().getLeaderBoardApi() + "?level=" + ((int)nowLevel + 1)  ))
+        using (UnityWebRequest www = UnityWebRequest.Get(GameSystemManager.GetSystem<LeaderBoard>().getLeaderBoardApi() + "?level=" + levelInteger ))
         {
             yield return www.SendWebRequest();
             string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
-            Debug.Log(GameSystemManager.GetSystem<LeaderBoard>().getLeaderBoardApi() + "?level=" + ((int)nowLevel + 1));
             LeaderBoard.LevelRecord[] leaderboardRecords = JsonHelper.FromJson<LeaderBoard.LevelRecord>(jsonString);
-            if (leaderboardRecords[0].username == GameSystemManager.GetSystem<StudentEventManager>().username)
+            if (leaderboardRecords[0].username == GameSystemManager.GetSystem<StudentEventManager>().username && levelInteger != 0)
             {
                 StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(4));
             }

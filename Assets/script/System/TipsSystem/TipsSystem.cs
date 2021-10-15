@@ -67,6 +67,11 @@ public class TipsSystem : MonoBehaviour
     public void TipsStart(object obj)
     {
         startDialouge = true;
+        // achieve 10
+        if (Level.restartCount == 10)
+        {
+            StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(10));
+        }
     }
 
     private void OnEnable()
@@ -86,6 +91,11 @@ public class TipsSystem : MonoBehaviour
         if (nowLevel.levelStarted)
         {
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("tips_closed", "{}");
+        }
+        // achieve  9
+        if (nowPage == 0)
+        {
+            GameSystemManager.GetSystem<AchievementManager>().logAchievementByManager(9);
         }
         nowPage = 0;
         pageText.text = (nowPage + 1) + "/" + count;

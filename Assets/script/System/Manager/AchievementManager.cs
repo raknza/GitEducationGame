@@ -116,6 +116,11 @@ public class AchievementManager : MonoBehaviour
 
     }
 
+    public void logAchievementByManager(int achievementId)
+    {
+        StartCoroutine(logAchievement(achievementId));
+    }
+
     public IEnumerator getUserAchievements()
     {
 
