@@ -18,6 +18,8 @@ public class CardFloating : MonoBehaviour, IPointerEnterHandler , IPointerExitHa
 
     bool covered = false;
     bool reading = false;
+    int readTimes = 0;
+    static int allReadTimes = 0;
 
     Image img;
     // Start is called before the first frame update
@@ -62,6 +64,18 @@ public class CardFloating : MonoBehaviour, IPointerEnterHandler , IPointerExitHa
             Level.levelScene nowLevel = GameObject.Find("MainScreenObject").GetComponent<Level>().nowLevel;
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("card_read", "{level:'" + nowLevel + "'" +
             ", card:'" + title.text + "'}");
+            readTimes++;
+            allReadTimes++;
+            // achieve 5
+            if (readTimes == 5)
+            {
+                StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(5));
+            }
+            // achieve 6
+            if (allReadTimes == 25)
+            {
+                StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(6));
+            }
             reading = false;
         }
     }

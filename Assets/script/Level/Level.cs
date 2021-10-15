@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class Level : MonoBehaviour
@@ -26,6 +27,7 @@ public class Level : MonoBehaviour
     public bool levelStarted { private set; get; } = false;
 
     protected float levelCost;
+    protected int  costLines;
     public enum levelScene
     {
         Level1,
@@ -77,25 +79,61 @@ public class Level : MonoBehaviour
         {
             passedLevelTips.SetActive(true);
             passedLevel = true;
-            int costLines = GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count;
+            costLines = GameObject.Find("DeveloperConsoleObject").GetComponent<Console.DeveloperConsole>().inputLogs.Count;
             passedLevelTips.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = 
                 "您使用了" + costLines + "行指令\n" + "並花費" + (int)levelCost + "秒通關";
 
             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("level_passed", "{level:'" + nowLevel + "'" +
                 ", line_cost:'" + costLines + "', time_cost:'" + (int)levelCost + "' }");
-            if (nowLevel == levelScene.Level1)
-            {
-                StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(0));
-            }
-
-            StartCoroutine(GameSystemManager.GetSystem<LeaderBoard>().logLevelRecord((int)levelCost, costLines, (int)nowLevel + 1));
-
+            StartCoroutine(achievementSet());
+            
         }
         else if(!passedLevel)
         {
             passedLevelTips.SetActive(false);
             passedLevel = false;
         }
+    }
+
+    IEnumerator achievementSet()
+    {
+        // achieve 1
+        if (nowLevel == levelScene.Level1)
+        {
+            StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(1));
+        }
+        // achieve 2
+        if (nowLevel == levelScene.Level5)
+        {
+            StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(2));
+        }
+        // achieve 3
+        if (nowLevel == levelScene.Level9)
+        {
+            StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(3));
+        }
+        // achieve 7
+        if (nowLevel != levelScene.Level0 && levelCost < 30)
+        {
+            StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(7));
+        }
+
+        // log level record
+        yield return StartCoroutine(GameSystemManager.GetSystem<LeaderBoard>().logLevelRecord((int)levelCost, costLines, (int)nowLevel + 1));
+
+        // achieve 4 
+        using (UnityWebRequest www = UnityWebRequest.Get(GameSystemManager.GetSystem<LeaderBoard>().getLeaderBoardApi() + "?level=" + ((int)nowLevel + 1)  ))
+        {
+            yield return www.SendWebRequest();
+            string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
+            Debug.Log(GameSystemManager.GetSystem<LeaderBoard>().getLeaderBoardApi() + "?level=" + ((int)nowLevel + 1));
+            LeaderBoard.LevelRecord[] leaderboardRecords = JsonHelper.FromJson<LeaderBoard.LevelRecord>(jsonString);
+            if (leaderboardRecords[0].username == GameSystemManager.GetSystem<StudentEventManager>().username)
+            {
+                StartCoroutine(GameSystemManager.GetSystem<AchievementManager>().logAchievement(4));
+            }
+        }
+        
     }
 
     protected void levelCostCount()

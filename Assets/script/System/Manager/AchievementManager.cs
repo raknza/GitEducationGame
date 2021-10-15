@@ -39,6 +39,8 @@ public class AchievementManager : MonoBehaviour
 
     public int testInput;
     public bool testSwitch;
+    [SerializeField]
+    List<string> monthList;
 
     private void Start()
     {
@@ -64,17 +66,20 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    public void achieve(int achievementId, bool animation = true)
+    public void achieve(int achievementId,string time ,bool animation = true)
     {
         if (achievements[achievementId-1] != null)
         {
             if (animation)
             {
-                achievementPopupObject.popup(achievements[achievementId-1].icon, achievements[achievementId-1].description);
+                achievementPopupObject.popup(achievements[achievementId-1].icon, achievements[achievementId-1].name);
             }
 
             achievementObjects.Find(x => x.name == "achievement" + (achievementId) + "locked").SetActive(false);
-            achievementObjects.Find(x => x.name == "achievement" + (achievementId) + "unlocked").SetActive(true);
+            GameObject ach = achievementObjects.Find(x => x.name == "achievement" + (achievementId) + "unlocked");
+            DateTime dateTime = DateTime.Parse(time);
+            ach.SetActive(true);
+            ach.transform.GetChild(4).GetComponent<Text>().text = monthList[dateTime.Month-1]+ " " + dateTime.Day + ", " + dateTime.Year;
         }
     }
 
@@ -82,7 +87,7 @@ public class AchievementManager : MonoBehaviour
     {
         if (testSwitch)
         {
-            achieve(testInput);
+            achieve(testInput, DateTime.Now.ToString());
             testSwitch = false;
         }
     }
@@ -104,7 +109,7 @@ public class AchievementManager : MonoBehaviour
             string result = www.downloadHandler.text;
             if (!result.Equals("already have achievement"))
             {
-                achieve(achievementId);
+                achieve(achievementId,DateTime.Now.ToString());
             }
 
         }
@@ -123,13 +128,10 @@ public class AchievementManager : MonoBehaviour
             string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
             AchievementRecord[] achievementRecords = JsonHelper.FromJson<AchievementRecord>(jsonString);
             for (int i = 0; i < achievementRecords.Length; i++) {
-                Debug.Log(achievementRecords[i].achievement.id);
-                achieve(achievementRecords[i].achievement.id,false);
+                //Debug.Log(achievementRecords[i].achievement.id);
+                achieve(achievementRecords[i].achievement.id, achievementRecords[i].time, false);
+
             }
-            /*if (!result.Equals("already have achievement"))
-            {
-                achieve(achievementId);
-            }*/
 
         }
 

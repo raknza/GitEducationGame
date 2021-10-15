@@ -32,19 +32,17 @@ public class LeaderBoard : MonoBehaviour
         gameObject.SetActive(true);
         Level.levelScene nowLevel = GameObject.Find("MainScreenObject").GetComponent<Level>().nowLevel;
         int levelIndex = Array.IndexOf(Level.levelScene.GetValues(nowLevel.GetType()), nowLevel);
-        StartCoroutine(getLevelLeaderboard(levelIndex + 1));
         index.text = "";
         username.text = "";
         timeCost.text = "";
         lineCost.text = "";
         time.text = "";
+        StartCoroutine(getLevelLeaderboard(levelIndex + 1));
     }
 
     IEnumerator getLevelLeaderboard(int level)
     {
-        head.text = "�Ʀ�] - Level " + level;
-        WWWForm form = new WWWForm();
-
+        head.text = "排行榜 - Level " + level;
 
         using (UnityWebRequest www = UnityWebRequest.Get(leaderBoardApi + "?level=" + level))
         {
@@ -78,12 +76,12 @@ public class LeaderBoard : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequest.Post(logLevelRecordApi, form))
         {
-            // Debug.Log(level);
             yield return www.SendWebRequest();
-            // Debug.Log(www.downloadHandler.text);
         }
 
     }
+
+    public string getLeaderBoardApi() { return leaderBoardApi; }
 
 
     [System.Serializable]
