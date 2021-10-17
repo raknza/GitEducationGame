@@ -61,12 +61,15 @@ public class TipsSystem : MonoBehaviour
 
         waitEnd = true;
         GameObject tipsObject = gameObject;
+        dialougeText.text = "";
+        image.enabled = false;
         GameSystemManager.GetSystem<TimerManager>().Add(new Timer(4, TipsStart, null));
     }
 
     public void TipsStart(object obj)
     {
         startDialouge = true;
+        image.enabled = true;
         // achieve 10
         if (Level.restartCount == 10)
         {
