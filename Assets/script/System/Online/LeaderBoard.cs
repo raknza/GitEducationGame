@@ -118,6 +118,7 @@ public class LeaderBoard : MonoBehaviour
             lineCost.text = lineCost.text + levelLeaderboardRecords[i].line_cost + "\n";
             time.text = time.text + levelLeaderboardRecords[i].time + "\n";
         }
+        username.transform.parent.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, showCounts * 100);
     }
 
     void updatePointsPointsLeaderboard()
@@ -141,6 +142,7 @@ public class LeaderBoard : MonoBehaviour
             timeCost.text = timeCost.text + pointsLeaderboardRecords[i].points + "\n";
             lineCost.text = lineCost.text + pointsLeaderboardRecords[i].achievements + "/10\n";
         }
+        username.transform.parent.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0,   showCounts * 100);
     }
 
     public void switchShow(bool showAll)

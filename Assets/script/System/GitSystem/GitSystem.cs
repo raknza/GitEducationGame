@@ -336,6 +336,7 @@ public class GitSystem : MonoBehaviour , Panel
     }
     public void SolvedConflict(bool branch,string name)
     {
+        conflicted = false;
         if (branch)
         {
             Commit("Merge branch " + name);
@@ -347,7 +348,6 @@ public class GitSystem : MonoBehaviour , Panel
             fileSystem.NewFile("page2", "");
             trackFile("page2", "init");
         }
-        conflicted = false;
     }
 }
 

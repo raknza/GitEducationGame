@@ -2374,7 +2374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3125, y: -196.68454}
+  m_AnchoredPosition: {x: -7.3125, y: -196.99509}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &589162560
@@ -2608,7 +2608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3125, y: -87.0345}
+  m_AnchoredPosition: {x: -7.3125, y: -87.345}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &659132898
@@ -2686,7 +2686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3125, y: -628.48456}
+  m_AnchoredPosition: {x: -7.3125, y: -628.795}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &659441612
@@ -4372,7 +4372,7 @@ MonoBehaviour:
   leftButton: {fileID: 381301932}
   rightButton: {fileID: 1139638879}
   pageText: {fileID: 1060990337}
-  count: 7
+  count: 6
   dialouge:
   - "\u606D\u559C\u4F60\u6210\u529F\u5EFA\u7ACB\u4E86\u4F60\u7684Git\u5132\u5B58\u5EAB\uFF0C\u5728\u5EFA\u7ACB\u4E86Git\u5132\u5B58\u5EAB\u5F8C\uFF0C\u8981\u958B\u59CB\u8A66\u8457\u5C07\u6A94\u6848\u7684\u7248\u672C\u904B\u7528Git\u5132\u5B58\u4E0B\u4F86\u3002"
   - "\u76EE\u524D\uFF0C\u5728\u672C\u5730\u6A94\u6848\u5340\u5DF2\u7D93\u5EFA\u7ACB\u4E86\u5169\u500B\u6A94\u6848\uFF0C\u4E5F\u5EFA\u7ACB\u4E86\u4E00\u500BGit\u5132\u5B58\u5EAB\u3002"
@@ -4380,8 +4380,7 @@ MonoBehaviour:
     add\u6307\u4EE4 \u5C07\u9019\u4E9B\u65B0\u589E\u7684\u6A94\u6848\u52A0\u5165\u8FFD\u8E64\uFF0C\u4E26\u63D0\u4EA4\uFF08Commit\uFF09\u4E00\u500B\u7248\u672C\u3002"
   - "\u8A73\u7D30\u7684\u6307\u4EE4\u8AAA\u660E\u53EF\u4EE5\u53C3\u8003\u6307\u4EE4\u5361\u3002"
   - "\u6B64\u5916\uFF0C\u7576\u4F7F\u7528commit\u6307\u4EE4\u6642\uFF0C\u5C07\u9700\u8981\u586B\u5165\u6B64\u6B21\u63D0\u4EA4\u7684\u7248\u672C\u7D00\u9304\u540D\u7A31\u8207\u76F8\u95DC\u63CF\u8FF0\uFF0C\u800C\u6B64\u8655\u53EA\u9700\u8981\u586B\u5BEB\u7248\u672C\u7684\u540D\u7A31\u3002"
-  - "\u540D\u7A31\u8F38\u5165\u5B8C\u5F8C\uFF0C\u8ACB\u5728\u8F38\u5165\u6B04\u7684\u4E0B\u65B9\u586B\u5165\"!wq\"\u4EE5\u96E2\u958B\u4ECB\u9762\u3002"
-  - "!wq\u662FVim\u6587\u5B57\u7DE8\u8F2F\u5668\u7684\u5132\u5B58\u8207\u96E2\u958B\u6307\u4EE4\uFF0C\u7576\u4F7F\u7528\u67D0\u4E9BGit\u64CD\u4F5C\u6642\uFF0C\u9810\u8A2D\u5C07\u6703\u958B\u555F\u6B64\u6587\u5B57\u7DE8\u8F2F\u5668\u3002"
+  - "\u53EF\u4EE5\u7C21\u5BEB\u6210 \"git commit -m {commit_name} \"\u7684\u5F62\u5F0F"
   dialougeText: {fileID: 1774353977}
   sprites:
   - {fileID: 21300000, guid: 5f5f2fca043221f40bf9440d5910a522, type: 3}
@@ -4393,6 +4392,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 21dff7992a55c5041ac5fea980fb8be9, type: 3}
   dialougeWaitSeconds: 0.03
   image: {fileID: 1405624000}
+  closeWhenEndPage: 1
 --- !u!1 &1104619837
 GameObject:
   m_ObjectHideFlags: 0
@@ -7379,7 +7379,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 95.74005, y: 70.60001}
-  m_SizeDelta: {x: 320, y: 40}
+  m_SizeDelta: {x: 320, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1779841800
 MonoBehaviour:
@@ -7407,14 +7407,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 182
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: git commit
+  m_Text: "git commit -m \n{commit_name}"
 --- !u!222 &1779841801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7533,7 +7533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3093567, y: -730.272}
+  m_AnchoredPosition: {x: -7.3093567, y: -730.5824}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1807236752
@@ -8492,7 +8492,7 @@ PrefabInstance:
     - target: {fileID: 2928235609316474214, guid: 7a8798db3c5c17941a26b34b39f3aa69,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -257.46194
+      value: -257.7725
       objectReference: {fileID: 0}
     - target: {fileID: 2928235610039792579, guid: 7a8798db3c5c17941a26b34b39f3aa69,
         type: 3}
@@ -8522,7 +8522,7 @@ PrefabInstance:
     - target: {fileID: 3728851613027566195, guid: 3c67613704124f546949f9b68312d7f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -240.47064
+      value: -240.78117
       objectReference: {fileID: 0}
     - target: {fileID: 3728851613044276991, guid: 3c67613704124f546949f9b68312d7f7,
         type: 3}
@@ -8803,7 +8803,7 @@ PrefabInstance:
     - target: {fileID: 8277770757944553331, guid: 189df56daa9543c4a85521a05144266b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -157.44626
+      value: -157.75677
       objectReference: {fileID: 0}
     - target: {fileID: 8277923265083688353, guid: 189df56daa9543c4a85521a05144266b,
         type: 3}

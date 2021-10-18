@@ -3157,7 +3157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3125, y: -196.92181}
+  m_AnchoredPosition: {x: -7.3125, y: -196.99509}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &589162560
@@ -3470,7 +3470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3125, y: -87.27179}
+  m_AnchoredPosition: {x: -7.3125, y: -87.345}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &659132898
@@ -3548,7 +3548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3125, y: -628.72174}
+  m_AnchoredPosition: {x: -7.3125, y: -628.795}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &659441612
@@ -5377,7 +5377,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 95.74005, y: 70.60001}
-  m_SizeDelta: {x: 320, y: 40}
+  m_SizeDelta: {x: 320, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051410155
 MonoBehaviour:
@@ -5412,7 +5412,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: git checkout
+  m_Text: "git checkout \n{branch}"
 --- !u!222 &1051410156
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5796,7 +5796,7 @@ MonoBehaviour:
   - "\u5728\u6C92\u6709\u5206\u652F\u529F\u80FD\u4E4B\u524D\uFF0C\u4F60\u5FC5\u9808\u5EFA\u7ACB\u4E00\u500B\u526F\u672C\uFF0C\u800C\u9019\u9EBC\u505A\u4E5F\u5C07\u5E36\u4F86\u6602\u8CB4\u7684\u6642\u9593\u6210\u672C\uFF0C\u8207\u7BA1\u7406\u4E0A\u7684\u56F0\u96E3\u3002"
   - "\u70BA\u4F60\u7684\u5C08\u6848\u5275\u7ACB\u4E86\u5206\u652F\u4EE5\u5F8C\uFF0C\u4EE3\u8868\u4F60\u53EF\u4EE5\u4EE5\u7576\u4E0B\u7684\u7248\u672C\u5206\u96E2\u51FA\u53E6\u4E00\u689D\u7DDA\u9032\u884C\u958B\u767C\uFF0C\u4E26\u4E14\u4E8B\u5F8C\u4E5F\u80FD\u9032\u884C\u5408\u4F75\uFF0C\u4EE5\u6574\u5408\u7A0B\u5F0F\u78BC\uFF0C\u9019\u4F7F\u5354\u4F5C\u7684\u5F48\u6027\u5927\u5927\u589E\u52A0\u3002"
   - "\u73FE\u5728\uFF0C\u8ACB\u4F60\u4F7F\u7528\"git branch\"\u6307\u4EE4\u5275\u7ACB\u4E00\u500B\u5206\u652F\uFF0C\u4E26\u4F7F\u7528          
-    \"git checkout\" \u5207\u63DB\u81F3\u65B0\u5275\u7ACB\u7684\u5206\u652F\u4E26\u63D0\u4EA4\u4E00\u500Bcommit\uFF0C       
+    \"git checkout {branch}\" \u5207\u63DB\u81F3\u65B0\u5275\u7ACB\u7684\u5206\u652F\u4E26\u63D0\u4EA4\u4E00\u500Bcommit\uFF0C       
     \u6700\u5F8C\u5207\u63DB\u56DE\u539F\u672C\u7684\u958B\u767C\u7DDA\u4E0A\u3002"
   - "\u76F8\u95DC\u7684\u6307\u4EE4\u8A73\u7D30\u8AAA\u660E\u53EF\u4EE5\u53C3\u8003\u4E0B\u65B9\u7684\u5716\u5361\u3002"
   dialougeText: {fileID: 1774353977}
@@ -5810,6 +5810,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60f9586d751af114f97b99b4c90762a8, type: 3}
   dialougeWaitSeconds: 0.03
   image: {fileID: 1405624000}
+  closeWhenEndPage: 1
 --- !u!1 &1104619837
 GameObject:
   m_ObjectHideFlags: 0
@@ -10121,7 +10122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01, y: 1}
   m_AnchorMax: {x: 0.99, y: 1}
-  m_AnchoredPosition: {x: -7.3093567, y: -730.5093}
+  m_AnchoredPosition: {x: -7.3093567, y: -730.5825}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1807236752
@@ -11598,7 +11599,7 @@ PrefabInstance:
     - target: {fileID: 2928235609316474214, guid: 7a8798db3c5c17941a26b34b39f3aa69,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -257.69922
+      value: -257.77252
       objectReference: {fileID: 0}
     - target: {fileID: 2928235610039792579, guid: 7a8798db3c5c17941a26b34b39f3aa69,
         type: 3}
@@ -11654,7 +11655,7 @@ PrefabInstance:
     - target: {fileID: 3728851613027566195, guid: 3c67613704124f546949f9b68312d7f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -240.7079
+      value: -240.7812
       objectReference: {fileID: 0}
     - target: {fileID: 3728851613044276991, guid: 3c67613704124f546949f9b68312d7f7,
         type: 3}
@@ -11960,7 +11961,7 @@ PrefabInstance:
     - target: {fileID: 8277770757944553331, guid: 189df56daa9543c4a85521a05144266b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -157.68356
+      value: -157.75679
       objectReference: {fileID: 0}
     - target: {fileID: 8277923265083688353, guid: 189df56daa9543c4a85521a05144266b,
         type: 3}
