@@ -30,6 +30,9 @@ public class LeaderBoard : MonoBehaviour
     PointsRecord[] pointsLeaderboardRecords;
     LevelRecord[] levelLeaderboardRecords;
 
+    RectTransform contentTableTrans;
+    VerticalLayoutGroup contentTableGroup;
+
     public void getLevelLeaderboard()
     {
         gameObject.SetActive(true);
@@ -46,6 +49,14 @@ public class LeaderBoard : MonoBehaviour
     IEnumerator getLevelLeaderboard(int level)
     {
         head.text = "排行榜 - Level " + level;
+        if (contentTableTrans == null)
+        {
+            contentTableTrans = username.transform.parent.parent.GetComponent<RectTransform>();
+        }
+        if (contentTableGroup == null)
+        {
+            contentTableGroup = username.transform.parent.parent.GetComponent<VerticalLayoutGroup>();
+        }
 
         using (UnityWebRequest www = UnityWebRequest.Get(leaderBoardApi + "?level=" + level))
         {
@@ -53,6 +64,7 @@ public class LeaderBoard : MonoBehaviour
             //Debug.Log(www.downloadHandler.text);
             string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
             levelLeaderboardRecords = JsonHelper.FromJson<LevelRecord>(jsonString);
+
             updateLevelLeaderboard();
         }
 
@@ -85,7 +97,14 @@ public class LeaderBoard : MonoBehaviour
 
     IEnumerator getPointsLeaderboard()
     {
-
+        if (contentTableTrans == null)
+        {
+            contentTableTrans = username.transform.parent.parent.GetComponent<RectTransform>();
+        }
+        if (contentTableGroup == null)
+        {
+            contentTableGroup = username.transform.parent.parent.GetComponent<VerticalLayoutGroup>();
+        }
         using (UnityWebRequest www = UnityWebRequest.Get(getAllUsersPointsApi))
         {
             yield return www.SendWebRequest();
@@ -112,13 +131,20 @@ public class LeaderBoard : MonoBehaviour
         }
         for (int i = 0; i < levelLeaderboardRecords.Length && (i < showCounts); i++)
         {
-            index.text = index.text + (i + 1) + "." + "\n";
+            index.text = index.text + (i + 1) + "\n";
             username.text = username.text + levelLeaderboardRecords[i].username + "\n";
             timeCost.text = timeCost.text + levelLeaderboardRecords[i].time_cost + "\n";
             lineCost.text = lineCost.text + levelLeaderboardRecords[i].line_cost + "\n";
             time.text = time.text + levelLeaderboardRecords[i].time + "\n";
         }
-        username.transform.parent.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, showCounts * 100);
+        contentTableTrans.sizeDelta = new Vector2(0, showCounts * 100);
+        contentTableGroup.padding.bottom = showCounts * 100;
+
+        index.GetComponent<RectTransform>().sizeDelta = new Vector2(index.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
+        username.GetComponent<RectTransform>().sizeDelta = new Vector2(username.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
+        timeCost.GetComponent<RectTransform>().sizeDelta = new Vector2(timeCost.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
+        lineCost.GetComponent<RectTransform>().sizeDelta = new Vector2(lineCost.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
+        time.GetComponent<RectTransform>().sizeDelta = new Vector2(time.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
     }
 
     void updatePointsPointsLeaderboard()
@@ -137,12 +163,18 @@ public class LeaderBoard : MonoBehaviour
 
         for (int i = 0; i < pointsLeaderboardRecords.Length && (i < showCounts); i++)
         {
-            index.text = index.text + (i + 1) + "" + "\n";
+            index.text = index.text + (i + 1)  + "\n";
             username.text = username.text + pointsLeaderboardRecords[i].user + "\n";
             timeCost.text = timeCost.text + pointsLeaderboardRecords[i].points + "\n";
             lineCost.text = lineCost.text + pointsLeaderboardRecords[i].achievements + "/10\n";
         }
-        username.transform.parent.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0,   showCounts * 100);
+        contentTableTrans.sizeDelta = new Vector2(0,   showCounts * 100);
+        contentTableGroup.padding.bottom = showCounts * 100;
+
+        index.GetComponent<RectTransform>().sizeDelta = new Vector2(index.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
+        username.GetComponent<RectTransform>().sizeDelta = new Vector2(username.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
+        timeCost.GetComponent<RectTransform>().sizeDelta = new Vector2(timeCost.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
+        lineCost.GetComponent<RectTransform>().sizeDelta = new Vector2(lineCost.GetComponent<RectTransform>().sizeDelta.x, index.text.Split('\n').Length * 88);
     }
 
     public void switchShow(bool showAll)
