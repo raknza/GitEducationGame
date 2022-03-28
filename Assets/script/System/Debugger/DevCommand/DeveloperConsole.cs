@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace Console
@@ -38,6 +39,7 @@ namespace Console
 
         [SerializeField]
         int inputIndex = -1;
+        static int consoleInputCount = 0;
 
         private void Awake()
         {
@@ -135,10 +137,12 @@ namespace Console
                         {
                             GameSystemManager.GetSystem<StudentEventManager>().logStudentEvent("console_input", "{input:'" + inputText.text + "'}");
                         }
+
                         ParseInput(inputText.text);
                         consoleInput.text = "";
                         consoleInput.ActivateInputField();
                         inputIndex = inputLogs.Count;
+                        StartCoroutine(checkConsoleInput());
 
                     }
                 }
@@ -172,5 +176,37 @@ namespace Console
         {
             throw new System.NotImplementedException();
         }
+
+        IEnumerator checkConsoleInput()
+        {
+
+            string getConsoleEventApi = "http://140.134.25.64:14253/getCollection?collection=" + GameSystemManager.GetSystem<StudentEventManager>().username + "&filterKey=event_name&filterValue=console_input";
+            UnityWebRequest www = UnityWebRequest.Get(getConsoleEventApi);
+            www.SetRequestHeader("Access-Control-Allow-Origin", "*");
+            using ( www )
+            {
+                yield return www.SendWebRequest();
+                string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
+                ConsoleInputEvent[] events = JsonHelper.FromJson<ConsoleInputEvent>(jsonString);
+                consoleInputCount = events.Length;
+                Debug.Log(consoleInputCount);
+                if (consoleInputCount >= 100)
+                {
+                    GameSystemManager.GetSystem<AchievementManager>().logAchievementByManager(8);
+                }
+            }
+
+        }
+
+
+        [System.Serializable]
+        public class ConsoleInputEvent
+        {
+            public string username;
+            public string event_name;
+            public string event_content;
+        }
+
+
     }
 }
