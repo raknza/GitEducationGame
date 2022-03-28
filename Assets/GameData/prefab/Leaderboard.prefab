@@ -1601,8 +1601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc03a241288fca4449e5557f8e19a522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderBoardApi: http://140.134.25.49:8080/getLevelLeaderboard
-  logLevelRecordApi: http://140.134.25.49:8080/logLevelRecord
+  leaderBoardApi: http://140.134.25.64:14253/getLevelLeaderboard
+  logLevelRecordApi: http://140.134.25.64:14253/logLevelRecord
   getAllUsersPointsApi: 
   head: {fileID: 6678413019810769950}
   index: {fileID: 6678413017801884358}
