@@ -447,8 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5a7b6aaafd00f448ca4fe30b839880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginApi: http://140.134.25.49:8080/login
-  registerApi: http://140.134.25.49:8080/createUser
+  loginApi: http://140.134.25.64:14253/login
+  registerApi: http://140.134.25.64:14253/createUser
   loginDialogue: {fileID: 1420834049}
   startButton: {fileID: 957292144}
   chapterButton: {fileID: 1287324796}
@@ -2282,9 +2282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc03a241288fca4449e5557f8e19a522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderBoardApi: http://140.134.25.49:8080/getLevelLeaderboard
-  logLevelRecordApi: http://140.134.25.49:8080/logLevelRecord
-  getAllUsersPointsApi: http://140.134.25.49:8080/getAllUsersPoints
+  leaderBoardApi: http://140.134.25.64:14253//getLevelLeaderboard
+  logLevelRecordApi: http://140.134.25.64:14253//logLevelRecord
+  getAllUsersPointsApi: http://140.134.25.64:14253//getAllUsersPoints
   head: {fileID: 991253403}
   index: {fileID: 673140302}
   username: {fileID: 1463230958}
@@ -6873,7 +6873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d888dc87767df184a83eebea03a48b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getCollectionApi: http://140.134.25.49:8080/getCollection?
+  getCollectionApi: http://140.134.25.64:14253/getCollection?
   chapterButtons:
   - {fileID: 377037627}
   - {fileID: 632795051}
