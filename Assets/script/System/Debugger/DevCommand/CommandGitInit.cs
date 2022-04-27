@@ -171,6 +171,28 @@ namespace Console
                     gitSystem.Pull(param[2], param[3]);
                 }
             }
+            if (param[1] == "stash")
+            {
+                if (param.Length != 2)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.stash();
+                }
+            }
+            if (param[1] == "pop")
+            {
+                if (param.Length != 2)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.pop();
+                }
+            }
 
         }
 

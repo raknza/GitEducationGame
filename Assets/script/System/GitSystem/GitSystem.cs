@@ -45,11 +45,18 @@ public class GitSystem : MonoBehaviour , Panel
     public bool sync { private set; get; } = false;
     public bool conflicted { private set; get; } = false;
 
+    public bool hasStash { private set; get; } = false;
+    List<KeyValuePair<string, string>> stashFiles;
+
     public void buildRepository()
     {
         if ( modifiedFiles == null )
         {
             modifiedFiles = new List<KeyValuePair<string, string>>();
+        }
+        if (stashFiles == null)
+        {
+            stashFiles = new List<KeyValuePair<string, string>>();
         }
         localRepository = new Repository();
         mainFlag.SetActive(true);
@@ -348,6 +355,29 @@ public class GitSystem : MonoBehaviour , Panel
             fileSystem.NewFile("page2", "");
             trackFile("page2", "init");
         }
+    }
+
+    public void stash()
+    {
+        hasStash = true;
+        for(int i =0; i < modifiedFiles.Count; i++)
+        {
+            stashFiles.Add(modifiedFiles[i]);
+        }
+        for (int i = 0; i < stashFiles.Count; i++)
+        {
+            untrackFile(stashFiles[i].Key);
+        }
+    }
+    
+    public void pop()
+    {
+        for (int i = 0; i < stashFiles.Count; i++)
+        {
+            trackFile(stashFiles[i].Key, stashFiles[i].Value);
+        }
+        stashFiles.Clear();
+        hasStash = false;
     }
 }
 
