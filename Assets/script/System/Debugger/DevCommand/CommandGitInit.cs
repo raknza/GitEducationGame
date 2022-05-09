@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ namespace Console
         public override string Command { get; protected set; }
         public override string Description { get; protected set; }
         public override string Help { get; protected set; }
+        public string type { get; private set; }
 
         public CommandGitInit()
         {
@@ -25,6 +26,7 @@ namespace Console
         {
             GitSystem gitSystem = GameObject.Find("GitObject").GetComponent<GitSystem>();
             DeveloperConsole console = GameObject.Find("DeveloperConsoleObject").GetComponent<DeveloperConsole>();
+            type = param[1];
             if( param.Length == 1)
             {
                 console.AddMessageToConsole("Error format");
@@ -191,6 +193,17 @@ namespace Console
                 else
                 {
                     gitSystem.pop();
+                }
+            }
+            if (param[1] == "rebase")
+            {
+                if (param.Length != 3)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.rebase(param[2]);
                 }
             }
 

@@ -36,6 +36,7 @@ namespace Console
         public InputField consoleInput;
 
         public List<string> inputLogs;
+        public ConsoleCommand lastExecuteCommand { get; private set; }
 
         [SerializeField]
         int inputIndex = -1;
@@ -50,7 +51,7 @@ namespace Console
         private void Start()
         {
             consoleCanvas.gameObject.SetActive(true);
-            //GameSystemManager.AddSystem<DeveloperConsole>(gameObject);
+            GameSystemManager.AddSystem<DeveloperConsole>(gameObject);
             CreateCommands();
             GameSystemManager.GetSystem<PanelManager>().AddSubPanel(this);
         }
@@ -115,6 +116,8 @@ namespace Console
             }
             else
             {
+                lastExecuteCommand = Commands[_input[0]];
+                Debug.Log(lastExecuteCommand.Command);
                 Commands[_input[0]].RunCommand(_input);
             }
         }
