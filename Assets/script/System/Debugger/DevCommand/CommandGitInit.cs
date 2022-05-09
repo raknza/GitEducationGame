@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -204,6 +204,17 @@ namespace Console
                 else
                 {
                     gitSystem.rebase(param[2]);
+                }
+            }
+            if (param[1] == "tag")
+            {
+                if (param.Length != 3)
+                {
+                    console.AddMessageToConsole("Error format");
+                }
+                else
+                {
+                    gitSystem.tag(param[2]);
                 }
             }
 

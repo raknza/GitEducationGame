@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +18,8 @@ public class GitSystem : MonoBehaviour , Panel
     GameObject remoteObjects;
     [SerializeField]
     GameObject localObjects;
+    [SerializeField]
+    GameObject exampleTagObject;
     public GameObject nowCommit { private set; get; }
     public Repository localRepository;
 
@@ -47,6 +49,7 @@ public class GitSystem : MonoBehaviour , Panel
 
     public bool hasStash { private set; get; } = false;
     List<KeyValuePair<string, string>> stashFiles;
+    public int tagCounts;
 
     public void buildRepository()
     {
@@ -457,5 +460,15 @@ public class GitSystem : MonoBehaviour , Panel
         deleteBranch(branch);
     }
 
+    public void tag(string version)
+    {
+        tagCounts++;
+        GameObject newTagObject = Instantiate(exampleTagObject, nowCommit.transform);
+        newTagObject.GetComponent<Text>().color = nowCommit.GetComponent<Image>().color;
+        newTagObject.GetComponent<Text>().text = version;
+        newTagObject.transform.localPosition = new Vector3(95 - newTagObject.GetComponent<Text>().text.Length * 5, -72, 0);
+        newTagObject.SetActive(true);
+        newTagObject.transform.SetParent(nowCommit.transform.parent);
+    }
 }
 
