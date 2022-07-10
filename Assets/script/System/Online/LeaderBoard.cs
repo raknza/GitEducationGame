@@ -7,11 +7,8 @@ using UnityEngine.UI;
 public class LeaderBoard : MonoBehaviour
 {
 
-    [SerializeField]
     string leaderBoardApi;
-    [SerializeField]
     string logLevelRecordApi;
-    [SerializeField]
     string getAllUsersPointsApi;
     [SerializeField]
     Text head;
@@ -32,6 +29,14 @@ public class LeaderBoard : MonoBehaviour
 
     RectTransform contentTableTrans;
     VerticalLayoutGroup contentTableGroup;
+
+
+    public void Awake()
+    {
+        leaderBoardApi = GameSystemManager.GetSystem<ApiManager>().getApiUrl("getLevelLeaderboard");
+        logLevelRecordApi = GameSystemManager.GetSystem<ApiManager>().getApiUrl("logLevelRecord");
+        getAllUsersPointsApi = GameSystemManager.GetSystem<ApiManager>().getApiUrl("getAllUsersPoints");
+    }
 
     public void getLevelLeaderboard()
     {
@@ -183,9 +188,6 @@ public class LeaderBoard : MonoBehaviour
         updateLevelLeaderboard();
         updatePointsPointsLeaderboard();
     }
-
-    public string getLeaderBoardApi() { return leaderBoardApi; }
-
 
     [System.Serializable]
     public class LevelRecord

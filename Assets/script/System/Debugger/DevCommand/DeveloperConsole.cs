@@ -183,7 +183,7 @@ namespace Console
         IEnumerator checkConsoleInput()
         {
 
-            string getConsoleEventApi = "http://140.134.25.64:14253/getCollection?collection=" + GameSystemManager.GetSystem<StudentEventManager>().username + "&filterKey=event_name&filterValue=console_input";
+            string getConsoleEventApi =  GameSystemManager.GetSystem<ApiManager>().getApiUrl("getCollection") + GameSystemManager.GetSystem<StudentEventManager>().username + "&filterKey=event_name&filterValue=console_input";
             UnityWebRequest www = UnityWebRequest.Get(getConsoleEventApi);
             www.SetRequestHeader("Access-Control-Allow-Origin", "*");
             using ( www )
@@ -192,7 +192,6 @@ namespace Console
                 string jsonString = JsonHelper.fixJson(www.downloadHandler.text);
                 ConsoleInputEvent[] events = JsonHelper.FromJson<ConsoleInputEvent>(jsonString);
                 consoleInputCount = events.Length;
-                Debug.Log(consoleInputCount);
                 if (consoleInputCount >= 100)
                 {
                     GameSystemManager.GetSystem<AchievementManager>().logAchievementByManager(8);
