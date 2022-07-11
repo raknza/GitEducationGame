@@ -15,3 +15,11 @@
 ![](https://github.com/raknza/GitEducationGame/raw/master/pics/image1.png)
 
 ![](https://github.com/raknza/GitEducationGame/raw/master/pics/image2.png)
+
+### 多語言使用方法
+
+![](https://github.com/raknza/GitEducationGame/raw/multi-language/pics/multiLan.png)
+
+ 首先根據圖片右邊，在GameText.json中新增詞條與對應語言的Key及Value，接著在Editor介面中的Tools按下Generate UIText，這將生成相應的UIText enum。
+ 接著在要使用多語言的介面物件上替換成TextWrapper，並填上UITEXT.磁條名稱，比如：UITEXT.START_GAME。
+ 若要新增更多語言請至LanguageManager.cs手動定義Language enum。
