@@ -1,0 +1,38 @@
+{
+  "EMPTY_STRING": {
+    "ENGLISH": "",
+    "CHINESE": ""
+  },
+  "LANGUAGE": {
+    "ENGLISH": "Language",
+    "CHINESE": "語言"
+  },
+  "ENGLISH": {
+    "ENGLISH": "English",
+    "CHINESE": "英語"
+  },
+  "CHINESE": {
+    "ENGLISH": "Chinese",
+    "CHINESE": "中文"
+  },
+  "START_GAME": {
+    "ENGLISH": "Start Game",
+    "CHINESE": "開始遊戲"
+  },
+  "LOGIN": {
+    "ENGLISH": "Login",
+    "CHINESE": "登入帳號"
+  },
+  "CHAPTER_SELECT": {
+    "ENGLISH": "Chapter Select",
+    "CHINESE": "章節選擇"
+  },
+  "ACHIEVEMENT": {
+    "ENGLISH": "Achievement",
+    "CHINESE": "成就"
+  },
+  "GLOBAL_LEADERBOARD": {
+    "ENGLISH": "Global Leaderboard",
+    "CHINESE": "總排行榜"
+  }
+}
