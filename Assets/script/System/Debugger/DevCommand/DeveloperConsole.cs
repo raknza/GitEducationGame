@@ -183,7 +183,7 @@ namespace Console
         IEnumerator checkConsoleInput()
         {
 
-            string getConsoleEventApi =  GameSystemManager.GetSystem<ApiManager>().getApiUrl("getCollection") + GameSystemManager.GetSystem<StudentEventManager>().username + "&filterKey=event_name&filterValue=console_input";
+            string getConsoleEventApi =  GameSystemManager.GetSystem<ApiManager>().getApiUrl("getCollection")  + "collection=" + GameSystemManager.GetSystem<StudentEventManager>().username + "&filterKey=event_name&filterValue=console_input";
             UnityWebRequest www = UnityWebRequest.Get(getConsoleEventApi);
             www.SetRequestHeader("Access-Control-Allow-Origin", "*");
             using ( www )
