@@ -115,7 +115,7 @@ public class GitSystem : MonoBehaviour , Panel
                 newCommitObject.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 150, nowCommit.GetComponent<RectTransform>().localPosition.y, nowCommit.GetComponent<RectTransform>().localPosition.z);
                 nowCommit = newCommitObject;
             }
-            nowCommit.GetComponentInChildren<Text>().text = name;
+            nowCommit.GetComponentInChildren<Text>().text = name + "\ncommitId:" + newCommit.id;
             nowCommit.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3(100 - newCommit.name.Length * 5, -49, 0);
             // normal flag set
             headFlag.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 160, nowCommit.GetComponent<RectTransform>().localPosition.y + 5, headFlag.GetComponent<RectTransform>().localPosition.z);
@@ -169,7 +169,7 @@ public class GitSystem : MonoBehaviour , Panel
                 newCommitObject.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 150, nowCommit.GetComponent<RectTransform>().localPosition.y, nowCommit.GetComponent<RectTransform>().localPosition.z);
                 nowCommit = newCommitObject;
             }
-            nowCommit.GetComponentInChildren<Text>().text = newCommit.name;
+            nowCommit.GetComponentInChildren<Text>().text = newCommit.name + "\ncommitId:" + newCommit.id;
             nowCommit.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3(100 - newCommit.name.Length * 5, -49, 0);
             // normal flag set
             headFlag.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 160, nowCommit.GetComponent<RectTransform>().localPosition.y + 5, headFlag.GetComponent<RectTransform>().localPosition.z);
@@ -478,6 +478,20 @@ public class GitSystem : MonoBehaviour , Panel
         newTagObject.transform.localPosition = new Vector3(95 - newTagObject.GetComponent<Text>().text.Length * 5, -72, 0);
         newTagObject.SetActive(true);
         newTagObject.transform.SetParent(nowCommit.transform.parent);
+    }
+
+    public void reset(string mode, string commitId)
+    {
+        int resetCommitIndex = localRepository.nowBranch.resetCommit(commitId);
+        nowCommit = commitObjects[resetCommitIndex];
+        headFlag.GetComponent<RectTransform>().localPosition = new Vector3(nowCommit.GetComponent<RectTransform>().localPosition.x - 160, nowCommit.GetComponent<RectTransform>().localPosition.y + 5, headFlag.GetComponent<RectTransform>().localPosition.z);
+        int removeCommitIndex = resetCommitIndex + 1;
+        while( commitObjects.Count != resetCommitIndex+1)
+        {
+            GameObject destroyedCommitObject= commitObjects[removeCommitIndex];
+            commitObjects.RemoveAt(resetCommitIndex+1);
+            Destroy(destroyedCommitObject);
+        }
     }
 }
 
